@@ -1,0 +1,183 @@
+
+60
+
+arrow
+image data/human/Arrow.png
+
+attack1
+image data/human/Attack1.png
+
+attack2
+image data/human/Attack2.png
+
+attack3
+image data/human/Attack3.png
+
+attack4
+image data/human/Attack4.png
+
+dead1
+image data/human/Dead1.png
+
+dead2
+image data/human/Dead2.png
+
+dead3
+image data/human/Dead3.png
+
+hurt1
+image data/human/Hurt1.png
+
+hurt2
+image data/human/Hurt2.png
+
+hurt3
+image data/human/Hurt3.png
+
+idle1
+image data/human/Idle1.png
+
+idle2
+image data/human/Idle2.png
+
+idle3
+image data/human/Idle3.png
+
+idle4
+image data/human/Idle4.png
+
+idle5
+image data/human/Idle5.png
+
+idle6
+image data/human/Idle6.png
+
+idle_21
+image data/human/Idle_21.png
+
+idle_22
+image data/human/Idle_22.png
+
+idle_23
+image data/human/Idle_23.png
+
+idle_24
+image data/human/Idle_24.png
+
+jump1
+image data/human/Jump1.png
+
+jump2
+image data/human/Jump2.png
+
+jump3
+image data/human/Jump3.png
+
+jump4
+image data/human/Jump4.png
+
+jump5
+image data/human/Jump5.png
+
+jump6
+image data/human/Jump6.png
+
+jump7
+image data/human/Jump7.png
+
+jump8
+image data/human/Jump8.png
+
+jump9
+image data/human/Jump9.png
+
+run1
+image data/human/Run1.png
+
+run2
+image data/human/Run2.png
+
+run3
+image data/human/Run3.png
+
+run4
+image data/human/Run4.png
+
+run5
+image data/human/Run5.png
+
+run6
+image data/human/Run6.png
+
+run7
+image data/human/Run7.png
+
+run8
+image data/human/Run8.png
+
+shot_11
+image data/human/Shot_11.png
+
+shot_12
+image data/human/Shot_12.png
+
+shot_13
+image data/human/Shot_13.png
+
+shot_14
+image data/human/Shot_14.png
+
+shot_15
+image data/human/Shot_15.png
+
+shot_16
+image data/human/Shot_16.png
+
+shot_17
+image data/human/Shot_17.png
+
+shot_18
+image data/human/Shot_18.png
+
+shot_19
+image data/human/Shot_19.png
+
+shot_110
+image data/human/Shot_110.png
+
+shot_111
+image data/human/Shot_111.png
+
+shot_112
+image data/human/Shot_112.png
+
+shot_113
+image data/human/Shot_113.png
+
+shot_114
+image data/human/Shot_114.png
+
+walk1
+image data/human/Walk1.png
+
+walk2
+image data/human/Walk2.png
+
+walk3
+image data/human/Walk3.png
+
+walk4
+image data/human/Walk4.png
+
+walk5
+image data/human/Walk5.png
+
+walk6
+image data/human/Walk6.png
+
+walk7
+image data/human/Walk7.png
+
+walk8
+image data/human/Walk8.png
+
