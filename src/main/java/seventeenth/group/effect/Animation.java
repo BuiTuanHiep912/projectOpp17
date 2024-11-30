@@ -134,7 +134,7 @@ public class Animation {
     }
 
     // lat nguoc tam hinh
-    public void fillAllImage() {
+    public void flipAllImage() {
         for(int i = 0; i <= frameImages.size() - 1; i++) {
             BufferedImage image = frameImages.get(i).getImage();
 
