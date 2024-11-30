@@ -1,30 +1,32 @@
 package seventeenth.group.userinterface;
 
+import seventeenth.group.gameobject.GameWorld;
+
 import javax.xml.crypto.dsig.keyinfo.KeyValue;
 import java.awt.event.KeyEvent;
 
 public class InputManager {
 
-    private GamePanel gamePanel;
+    private GameWorld gameWorld;
 
-    public InputManager(GamePanel gamePanel) {
-        this.gamePanel = gamePanel;
+    public InputManager(GameWorld gameWorld) {
+        this.gameWorld = gameWorld;
     }
 
     public void processKeyPressed(int keyCode) {
 
         if(keyCode == KeyEvent.VK_UP) {
-            gamePanel.physicalMap.y -= 5;
+            //gamePanel.gameWorld.hero.setDirection(Hero.DIR_LEFT);
         }
         else if(keyCode == KeyEvent.VK_DOWN) {
-            gamePanel.physicalMap.y += 5;
+            //gamePanel.physicalMap.y += 5;
 
         }
         else if(keyCode == KeyEvent.VK_LEFT) {
-            gamePanel.physicalMap.x -= 5;
+            //gamePanel.physicalMap.x -= 5;
         }
         else if(keyCode == KeyEvent.VK_RIGHT) {
-            gamePanel.physicalMap.x += 5;
+            //gamePanel.physicalMap.x += 5;
         }
         else if(keyCode == KeyEvent.VK_ENTER) {
             System.out.println("You press ENTER");

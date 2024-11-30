@@ -1,6 +1,7 @@
 package seventeenth.group.userinterface;
 
 import seventeenth.group.effect.*;
+import seventeenth.group.gameobject.GameWorld;
 import seventeenth.group.gameobject.PhysicalMap;
 
 import java.awt.*;
@@ -24,10 +25,13 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     BufferedImage bufferedImage;
     Graphics2D bufferedGraphics2d;
 
-    PhysicalMap physicalMap = new PhysicalMap(0, 0);
+    protected GameWorld gameWorld;
+
+    // PhysicalMap physicalMap = new PhysicalMap(0, 0);
 
     public GamePanel() {
-        inputManager = new InputManager(this);
+        gameWorld = new GameWorld();
+        inputManager = new InputManager(gameWorld);
         bufferedImage = new BufferedImage(GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT, BufferedImage.TYPE_INT_ARGB);
     }
 
@@ -35,19 +39,25 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         g.drawImage(bufferedImage, 0, 0, this);
     }
 
+    public void UpdateGame() {
+        gameWorld.Update();
+    }
+
     public void RenderGame() { // ve lai tren 1 image
         if(bufferedImage == null) {
             bufferedImage = new BufferedImage(GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT, BufferedImage.TYPE_INT_ARGB);
         }
 
-        bufferedGraphics2d = (Graphics2D) bufferedImage.getGraphics();
+        if(bufferedImage != null) {
+            bufferedGraphics2d = (Graphics2D) bufferedImage.getGraphics();
+        }
 
         if(bufferedGraphics2d != null) {
             bufferedGraphics2d.setColor(Color.white);
             bufferedGraphics2d.fillRect(0, 0, GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT);
 
             //draw object here
-            physicalMap.draw(bufferedGraphics2d);
+            gameWorld.Render(bufferedGraphics2d);
         }
     }
 
