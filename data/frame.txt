@@ -1,5 +1,5 @@
 
-60
+109
 
 arrow
 image data/human/Arrow.png
@@ -180,4 +180,152 @@ image data/human/Walk7.png
 
 walk8
 image data/human/Walk8.png
+
+shamanAttack1
+image data/shaman/Attack_1_01.png
+
+shamanAttack2
+image data/shaman/Attack_1_02.png
+
+shamanAttack3
+image data/shaman/Attack_1_03.png
+
+shamanAttack4
+image data/shaman/Attack_1_04.png
+
+shamanDead1
+image data/shaman/Dead_01.png
+
+shamanDead2
+image data/shaman/Dead_02.png
+
+shamanDead3
+image data/shaman/Dead_03.png
+
+shamanDead4
+image data/shaman/Dead_04.png
+
+shamanDead5
+image data/shaman/Dead_05.png
+
+shamanHurt_01
+image data/shaman/Hurt_01.png
+
+shamanHurt_02
+image data/shaman/Hurt_02.png
+
+shamanIdle_01
+image data/shaman/Idle_01.png
+
+shamanIdle_02
+image data/shaman/Idle_02.png
+
+shamanIdle_03
+image data/shaman/Idle_03.png
+
+shamanIdle_04
+image data/shaman/Idle_04.png
+
+shamanIdle_05
+image data/shaman/Idle_05.png
+
+shamanJump_01
+image data/shaman/Jump_01.png
+
+shamanJump_02
+image data/shaman/Jump_01.png
+
+shamanJump_03
+image data/shaman/Jump_02.png
+
+shamanJump_04
+image data/shaman/Jump_03.png
+
+shamanJump_05
+image data/shaman/Jump_04.png
+
+shamanJump_06
+image data/shaman/Jump_05.png
+
+shamanMagic_1_01
+image data/shaman/Magic_1_01.png
+
+shamanMagic_1_02
+image data/shaman/Magic_1_02.png
+
+shamanMagic_1_03
+image data/shaman/Magic_1_03.png
+
+shamanMagic_1_04
+image data/shaman/Magic_1_04.png
+
+shamanMagic_1_05
+image data/shaman/Magic_1_05.png
+
+shamanMagic_1_06
+image data/shaman/Magic_1_06.png
+
+shamanMagic_1_07
+image data/shaman/Magic_1_07.png
+
+shamanMagic_1_08
+image data/shaman/Magic_1_08.png
+
+shamanMagic_2_01
+image data/shaman/Magic_2_01.png
+
+shamanMagic_2_02
+image data/shaman/Magic_2_02.png
+
+shamanMagic_2_03
+image data/shaman/Magic_2_03.png
+
+shamanMagic_2_04
+image data/shaman/Magic_2_04.png
+
+shamanMagic_2_05
+image data/shaman/Magic_2_05.png
+
+shamanMagic_2_06
+image data/shaman/Magic_2_06.png
+
+shamanRun_01
+image data/shaman/Run_01.png
+
+shamanRun_02
+image data/shaman/Run_02.png
+
+shamanRun_03
+image data/shaman/Run_03.png
+
+shamanRun_04
+image data/shaman/Run_04.png
+
+shamanRun_05
+image data/shaman/Run_05.png
+
+shamanRun_06
+image data/shaman/Run_06.png
+
+shamanWalk_01
+image data/shaman/Walk_01.png
+
+shamanWalk_02
+image data/shaman/Walk_02.png
+
+shamanWalk_03
+image data/shaman/Walk_03.png
+
+shamanWalk_04
+image data/shaman/Walk_04.png
+
+shamanWalk_05
+image data/shaman/Walk_05.png
+
+shamanWalk_06
+image data/shaman/Walk_06.png
+
+shamanWalk_07
+image data/shaman/Walk_07.png
+
 

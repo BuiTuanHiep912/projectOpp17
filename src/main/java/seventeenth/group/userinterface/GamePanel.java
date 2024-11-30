@@ -1,6 +1,8 @@
 package seventeenth.group.userinterface;
 
 import seventeenth.group.effect.*;
+import seventeenth.group.gameobject.PhysicalMap;
+
 import java.awt.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -19,51 +21,18 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     private InputManager inputManager;
 
-    /*BufferedImage image;
-    BufferedImage supImage;
-
-    FrameImage frame1, frame2, frame3;
-
-    Animation animation;*/
-
-    /*FrameImage frame1;
-    Animation animation1;*/
-
     BufferedImage bufferedImage;
     Graphics2D bufferedGraphics2d;
 
+    PhysicalMap physicalMap = new PhysicalMap(0, 0);
+
     public GamePanel() {
-        inputManager = new InputManager();
-        /*try {
-            BufferedImage image = ImageIO.read(new File("data/human/Dead.png"));
-            BufferedImage image1 = image.getSubimage(25, 52, 74, 76);
-            frame1 = new FrameImage("frame1", image1);
-            BufferedImage image2 = image.getSubimage(153, 52, 74, 76);
-            frame2 = new FrameImage("frame2", image2);
-            BufferedImage image3 = image.getSubimage(279, 52, 91, 76);
-            frame3 = new FrameImage("frame3", image3);
-            animation = new Animation();
-            animation.addFrame(frame1, 200*1000000);
-            animation.addFrame(frame2, 200*1000000);
-            animation.addFrame(frame3, 200*1000000);
-        } catch (IOException ex) {}*/
-        /*frame1 = CacheDataLoader.getInstance().getFrameImage("attack2");
-        animation1 = CacheDataLoader.getInstance().getAnimation("hurt");*/
-        /*animation1.fillAllImage();*/
+        inputManager = new InputManager(this);
         bufferedImage = new BufferedImage(GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT, BufferedImage.TYPE_INT_ARGB);
     }
 
     public void paint(Graphics g) {
         g.drawImage(bufferedImage, 0, 0, this);
-
-        /*Graphics2D g2 = (Graphics2D) g;
-        animation.Update(System.nanoTime());
-        animation.draw(100, 130, g2);*/
-
-        /*Graphics2D g2 = (Graphics2D) g;
-        frame1.draw(g2, 130, 130);
-
-        animation1.draw(300, 300, g2);*/
     }
 
     public void RenderGame() { // ve lai tren 1 image
@@ -77,10 +46,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             bufferedGraphics2d.setColor(Color.white);
             bufferedGraphics2d.fillRect(0, 0, GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT);
 
-            /*bufferedGraphics2d.setColor(Color.red);
-            bufferedGraphics2d.fillRect(40, 50, 100, 100);*/
-            //animation1.draw(300, 300, bufferedGraphics2d);
-
+            //draw object here
+            physicalMap.draw(bufferedGraphics2d);
         }
     }
 

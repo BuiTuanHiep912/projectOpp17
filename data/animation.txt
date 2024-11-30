@@ -1,5 +1,5 @@
 
-9
+18
 
 attack
 attack1 100000000 attack2 100000000 attack3 100000000 attack4 100000000
@@ -27,3 +27,31 @@ shot_11 50000000 shot_12 50000000 shot_13 50000000 shot_14 50000000 shot_15 5000
 
 walk
 walk1 50000000 walk2 50000000 walk3 50000000 walk4 50000000 walk5 50000000 walk6 50000000 walk7 50000000 walk8 50000000
+
+shamanAttack_1
+shamanAttack1 5000000 shamanAttack2 5000000 shamanAttack3 5000000 shamanAttack4 5000000
+
+shamanDead
+shamanDead1 5000000 shamanDead2 5000000 shamanDead3 5000000 shamanDead4 5000000 shamanDead5 5000000
+
+shamanHurt
+shamanHurt_01 5000000 shamanHurt_02 5000000
+
+shamanIdle
+shamanIdle_01 5000000 shamanIdle_02 5000000 shamanIdle_03 5000000 shamanIdle_04 5000000 shamanIdle_05 5000000
+
+shamanJump
+shamanJump_01 5000000 shamanJump_02 5000000 shamanJump_03 5000000 shamanJump_04 5000000 shamanJump_05 5000000 shamanJump_06 5000000
+
+shamanMagic_1
+shamanMagic_1_01 5000000 shamanMagic_1_02 5000000 shamanMagic_1_03 5000000 shamanMagic_1_04 5000000 shamanMagic_1_05 5000000 shamanMagic_1_06 5000000 shamanMagic_1_07 5000000 shamanMagic_1_08 5000000
+
+shamanMagic_2
+shamanMagic_2_01 5000000 shamanMagic_2_02 5000000 shamanMagic_2_03 5000000 shamanMagic_2_04 5000000 shamanMagic_2_05 5000000 shamanMagic_2_06 5000000
+
+shamanRun
+shamanRun_01 5000000 shamanRun_02 5000000 shamanRun_03 5000000 shamanRun_04 5000000 shamanRun_05 5000000 shamanRun_06 5000000
+
+shamanWalk
+shamanWalk_01 5000000 shamanWalk_02 5000000 shamanWalk_03 5000000 shamanWalk_04 5000000 shamanWalk_05 5000000 shamanWalk_06 5000000 shamanWalk_07 5000000
+

@@ -4,19 +4,27 @@ import javax.xml.crypto.dsig.keyinfo.KeyValue;
 import java.awt.event.KeyEvent;
 
 public class InputManager {
+
+    private GamePanel gamePanel;
+
+    public InputManager(GamePanel gamePanel) {
+        this.gamePanel = gamePanel;
+    }
+
     public void processKeyPressed(int keyCode) {
 
         if(keyCode == KeyEvent.VK_UP) {
-            System.out.println("You press UP");
+            gamePanel.physicalMap.y -= 5;
         }
         else if(keyCode == KeyEvent.VK_DOWN) {
-            System.out.println("You press DOWN");
+            gamePanel.physicalMap.y += 5;
+
         }
         else if(keyCode == KeyEvent.VK_LEFT) {
-            System.out.println("You press LEFT");
+            gamePanel.physicalMap.x -= 5;
         }
         else if(keyCode == KeyEvent.VK_RIGHT) {
-            System.out.println("You press RIGHT");
+            gamePanel.physicalMap.x += 5;
         }
         else if(keyCode == KeyEvent.VK_ENTER) {
             System.out.println("You press ENTER");
