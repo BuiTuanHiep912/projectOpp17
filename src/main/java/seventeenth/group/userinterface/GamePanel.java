@@ -1,8 +1,8 @@
 package seventeenth.group.userinterface;
 
 import seventeenth.group.effect.*;
-import seventeenth.group.gameobject.GameWorld;
-import seventeenth.group.gameobject.PhysicalMap;
+import seventeenth.group.gameobjects.GameWorld;
+import seventeenth.group.gameobjects.PhysicalMap;
 
 import java.awt.*;
 import javax.imageio.ImageIO;

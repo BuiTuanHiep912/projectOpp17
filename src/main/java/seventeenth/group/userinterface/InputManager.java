@@ -1,6 +1,7 @@
 package seventeenth.group.userinterface;
 
-import seventeenth.group.gameobject.GameWorld;
+import seventeenth.group.gameobjects.GameWorld;
+import seventeenth.group.gameobjects.GameWorld;
 
 import javax.xml.crypto.dsig.keyinfo.KeyValue;
 import java.awt.event.KeyEvent;
