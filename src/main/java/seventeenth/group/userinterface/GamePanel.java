@@ -1,6 +1,8 @@
 package seventeenth.group.userinterface;
 
 import seventeenth.group.effect.*;
+import seventeenth.group.gameobject.PhysicalMap;
+
 import java.awt.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -22,8 +24,10 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     BufferedImage bufferedImage;
     Graphics2D bufferedGraphics2d;
 
+    PhysicalMap physicalMap = new PhysicalMap(0, 0);
+
     public GamePanel() {
-        inputManager = new InputManager();
+        inputManager = new InputManager(this);
         bufferedImage = new BufferedImage(GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT, BufferedImage.TYPE_INT_ARGB);
     }
 
@@ -41,6 +45,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         if(bufferedGraphics2d != null) {
             bufferedGraphics2d.setColor(Color.white);
             bufferedGraphics2d.fillRect(0, 0, GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT);
+
+            //draw object here
+            physicalMap.draw(bufferedGraphics2d);
         }
     }
 
