@@ -1,4 +1,4 @@
-package seventeenth.group.gameobject;
+package seventeenth.group.gameobjects;
 
 import seventeenth.group.effect.CacheDataLoader;
 

@@ -20,11 +20,11 @@ public class Hero extends Human {
     private AudioClip hurtingSound;
     private AudioClip shooting1;
 
-    public Hero(float x, float y, GameWorldState gameWorld) {
+    public Hero(float x, float y, GameWorld gameWorld) {
         super(x, y, 70, 90, 0.1f, 100, gameWorld);
 
-        shooting1 = CacheDataLoader.getInstance().getSound("");
-        hurtingSound = CacheDataLoader.getInstance().getSound("");
+        //shooting1 = CacheDataLoader.getInstance().getSound("");
+        //hurtingSound = CacheDataLoader.getInstance().getSound("");
 
         setTeamType(LEAGUE_TEAM);
 

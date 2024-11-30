@@ -1,4 +1,4 @@
-package seventeenth.group.gameobject;
+package seventeenth.group.gameobjects;
 
 import java.awt.Graphics2D;
 

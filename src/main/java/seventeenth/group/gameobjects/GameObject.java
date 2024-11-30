@@ -6,9 +6,9 @@ public abstract class GameObject {
     private float posX;
     private float posY;
     //tọa độ của vật
-    private GameWorldState gameWorld; //để các đối tượng có biến tham chiếu về GameObject
+    private GameWorld gameWorld; //để các đối tượng có biến tham chiếu về GameObject
     //khởi tạo constructor
-    public GameObject(float x, float y, GameWorldState gameWorld){
+    public GameObject(float x, float y, GameWorld gameWorld){
         posX = x;
         posY = y;
         this.gameWorld = gameWorld;
@@ -30,7 +30,7 @@ public abstract class GameObject {
         return posY;
     }
 
-    public GameWorldState getGameWorld(){
+    public GameWorld getGameWorld(){
         return gameWorld;
     }
 
