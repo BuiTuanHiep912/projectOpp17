@@ -27,7 +27,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     protected GameWorld gameWorld;
 
-    // PhysicalMap physicalMap = new PhysicalMap(0, 0);
+    //PhysicalMap physicalMap = new PhysicalMap(0, 0, this);
 
     public GamePanel() {
         gameWorld = new GameWorld();
@@ -81,7 +81,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             //System.out.println(a++);
             // Update
 
-
+            UpdateGame();
             RenderGame();
             //animation1.Update(System.nanoTime());
             repaint();

@@ -1,9 +1,8 @@
 package seventeenth.group.gameobjects;
 
-import seventeenth.group.state.GameWorldState;
 import seventeenth.group.effect.Animation;
 import seventeenth.group.effect.CacheDataLoader;
-import java.applet.AudioClip;
+//import java.applet.AudioClip;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
@@ -17,11 +16,11 @@ public class Hero extends Human {
     private long lastShootingTime;
     private boolean isShooting = false;
 
-    private AudioClip hurtingSound;
-    private AudioClip shooting1;
+    //private AudioClip hurtingSound;
+    //private AudioClip shooting1;
 
     public Hero(float x, float y, GameWorld gameWorld) {
-        super(x, y, 70, 90, 0.1f, 100, gameWorld);
+         super(x, y, 70, 90, 100, gameWorld);
 
         //shooting1 = CacheDataLoader.getInstance().getSound("");
         //hurtingSound = CacheDataLoader.getInstance().getSound("");
@@ -61,12 +60,12 @@ public class Hero extends Human {
     public void Update() {
 
         super.Update();
-
+        /*
         if(isShooting){
             if(System.nanoTime() - lastShootingTime > 500*1000000){
                 isShooting = false;
             }
-        }
+        }*/
     }
 
     @Override
@@ -159,8 +158,8 @@ public class Hero extends Human {
     @Override
     public void run() {
         if(getDirection() == LEFT_DIR)
-            setSpeedX(-3);
-        else setSpeedX(3);
+            setSpeedX(-RUNSPEED);
+        else setSpeedX(RUNSPEED);
     }
 
 
@@ -175,7 +174,7 @@ public class Hero extends Human {
 
     @Override
     public void attack() {
-
+    /*
         if(!isShooting){
 
             shooting1.play();
@@ -204,11 +203,11 @@ public class Hero extends Human {
             isShooting = true;
 
         }
-
+    */
     }
     @Override
     public void hurtingCallback(){
         System.out.println("Call back hurting");
-        hurtingSound.play();
+        //hurtingSound.play();
     }
 }
