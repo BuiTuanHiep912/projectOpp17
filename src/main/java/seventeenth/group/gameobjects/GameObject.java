@@ -35,5 +35,7 @@ public abstract class GameObject {
     }
 
     public abstract void Update();
+
+
     //phương thức abstract để các class kế thừa phải định nghĩa lại hàm Update()
 }

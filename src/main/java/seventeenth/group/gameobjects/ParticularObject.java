@@ -1,6 +1,6 @@
 package seventeenth.group.gameobjects;
 
-import seventeenth.group.state.GameWorldState;
+//import seventeenth.group.state.GameWorldState;
 import seventeenth.group.effect.Animation;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -48,17 +48,23 @@ public abstract class ParticularObject extends GameObject{
     private long startTimeNoBeHurt; //thời gian bắt đầu miễn nhiễm sát thương
     private long timeForNoBeHurt;  //khoảng thời gian miễn nhiễm sát thương
 
-    public ParticularObject(float x, float y, float width, float height, float mass, int blood, GameWorldState gameWorld){
+    //public GameWorld gameWorld;
+
+    public ParticularObject(float x, float y, float width, float height, int blood, GameWorld gameWorld){
         super(x, y, gameWorld); //kế thừa GameObject
         setWidth(width);
         setHeight(height);
-        setMass(mass);
         setBlood(blood);
+
+        setSpeedX(0); // Tốc độ theo trục X (có thể thay đổi khi di chuyển)
+        setSpeedY(0); // Tốc độ theo trục Y (có thể thay đổi khi di chuyển)
 
         direction = RIGHT_DIR;
 
     }
     //các hàm setter getter
+
+
     public void setTimeForNoBehurt(long time){
         timeForNoBeHurt = time;
     }
@@ -90,14 +96,6 @@ public abstract class ParticularObject extends GameObject{
 
     public int getTeamType(){
         return teamType;
-    }
-
-    public void setMass(float mass){
-        this.mass = mass;
-    }
-
-    public float getMass(){
-        return mass;
     }
 
     public void setSpeedX(float speedX){
@@ -154,12 +152,15 @@ public abstract class ParticularObject extends GameObject{
     //chưa biết đối tượng tấn công như nào nên để hàm abstract
 
     public boolean isObjectOutOfCameraView(){
+
         if(getPosX() - getGameWorld().camera.getPosX() > getGameWorld().camera.getWidthView() ||
                 getPosX() - getGameWorld().camera.getPosX() < -50
                 ||getPosY() - getGameWorld().camera.getPosY() > getGameWorld().camera.getHeightView()
                 ||getPosY() - getGameWorld().camera.getPosY() < -50)
             return true;
         else return false;
+
+
     }
 
     public Rectangle getBoundForCollisionWithMap(){
@@ -169,6 +170,7 @@ public abstract class ParticularObject extends GameObject{
         bound.y = (int) (getPosY() - (getHeight()/2));
         bound.width = (int) getWidth();
         bound.height = (int) getHeight();
+
         return bound;
     }
 
@@ -181,24 +183,21 @@ public abstract class ParticularObject extends GameObject{
 
     @Override
     public void Update(){
+        setPosX(getPosX() + getSpeedX());
+        setPosY(getPosY() + getSpeedY());
         //các case trạng thái
         switch(state){
             case ALIVE:
 
-                // note: SET DAMAGE FOR OBJECT NO DAMAGE
                 ParticularObject object = getGameWorld().particularObjectManager.getCollisionWidthEnemyObject(this);
                 if(object!=null){
 
                     if(object.getDamage() > 0){
-                        // switch state to fey if object die
-
                         System.out.println("eat damage.... from collision with enemy........ "+object.getDamage());
                         beHurt(object.getDamage());
                     }
 
                 }
-
-
 
                 break;
 
@@ -259,6 +258,8 @@ public abstract class ParticularObject extends GameObject{
     public abstract void draw(Graphics2D g2);
 
     public void hurtingCallback(){};
+
+
 
 
 }

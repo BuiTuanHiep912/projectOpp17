@@ -1,10 +1,10 @@
 package seventeenth.group.gameobjects;
 
-import seventeenth.group.state.GameWorldState;
+//import seventeenth.group.state.GameWorldState;
 import java.awt.Graphics2D;
-
+/*
 public class Bullet extends ParticularObject {
-    public Bullet(float x, float y, float width, float height, float mass, int damage, GameWorldState gameWorld) {
+    public Bullet(float x, float y, float width, float height, float mass, int damage, GameWorld gameWorld) {
         super(x, y, width, height, mass, 1, gameWorld);
         setDamage(damage);
     }
@@ -24,3 +24,4 @@ public class Bullet extends ParticularObject {
     }
 
 }
+*/
