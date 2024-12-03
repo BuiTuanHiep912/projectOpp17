@@ -1,41 +1,40 @@
 package seventeenth.group.gameobjects;
 
+import seventeenth.group.userinterface.GamePanel;
+
 public abstract class GameObject {
-    //lớp cơ bản của các Object
-    //Các lớp đối tượng khác đều kế thừa lớp GameObject
     private float posX;
     private float posY;
-    //tọa độ của vật
-    private GameWorld gameWorld; //để các đối tượng có biến tham chiếu về GameObject
-    //khởi tạo constructor
-    public GameObject(float x, float y, GameWorld gameWorld){
-        posX = x;
-        posY = y;
+    private GameWorld gameWorld;
+
+    public GameObject(float posX, float posY, GameWorld gameWorld) {
+        this.posX = posX;
+        this.posY = posY;
         this.gameWorld = gameWorld;
     }
-    //tạo các phương thức getter setter
-    public void setPosX(float x){
-        posX = x;
-    }
 
-    public float getPosX(){
+    public float getPosX() {
         return posX;
     }
 
-    public void setPosY(float y){
-        posY = y;
+    public void setPosX(float posX) {
+        this.posX = posX;
     }
 
-    public float getPosY(){
+    public float getPosY() {
         return posY;
     }
 
-    public GameWorld getGameWorld(){
+    public void setPosY(float posY) {
+        this.posY = posY;
+    }
+
+    public GameWorld getGameWorld() {
         return gameWorld;
     }
 
+    public void setGameWorld(GameWorld gameWorld) {
+        this.gameWorld = gameWorld;
+    }
     public abstract void Update();
-
-
-    //phương thức abstract để các class kế thừa phải định nghĩa lại hàm Update()
 }
