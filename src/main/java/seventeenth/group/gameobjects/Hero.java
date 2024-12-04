@@ -88,7 +88,7 @@ public class Hero extends Human {
 
     @Override
     public void run() {
-        System.out.println(getDirection());
+        //System.out.println(getDirection());
         if(getDirection() == LEFT_DIR) {
             setSpeedX(-3);
             setSpeedY(0);

@@ -71,7 +71,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     public void run() {
 
-        long FPS = 80;
+        long FPS = 60;
         long period = 1000 * 1000000 / FPS; // nano second
         long beginTime;
         long sleepTime;
