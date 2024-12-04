@@ -2,6 +2,7 @@ package seventeenth.group.userinterface;
 
 import seventeenth.group.effect.*;
 import seventeenth.group.gameobjects.GameWorld;
+import seventeenth.group.gameobjects.Hero;
 import seventeenth.group.gameobjects.PhysicalMap;
 
 import java.awt.*;
@@ -25,9 +26,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     BufferedImage bufferedImage;
     Graphics2D bufferedGraphics2d;
 
-    protected GameWorld gameWorld;
-
-    //PhysicalMap physicalMap = new PhysicalMap(0, 0, this);
+    public GameWorld gameWorld;
 
     public GamePanel() {
         gameWorld = new GameWorld();
@@ -57,6 +56,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             bufferedGraphics2d.fillRect(0, 0, GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT);
 
             //draw object here
+            //gameWorld.Render(bufferedGraphics2d);
             gameWorld.Render(bufferedGraphics2d);
         }
     }
@@ -71,22 +71,17 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     public void run() {
 
-        long FPS = 80;
+        long FPS = 60;
         long period = 1000 * 1000000 / FPS; // nano second
         long beginTime;
         long sleepTime;
 
         beginTime = System.nanoTime();
         while(isRunning) {
-            //System.out.println(a++);
-            // Update
 
             UpdateGame();
             RenderGame();
-            //animation1.Update(System.nanoTime());
             repaint();
-            /*animation1.Update(System.nanoTime());
-            repaint();*/
 
             long deltaTime = System.nanoTime() - beginTime;
             sleepTime = period - deltaTime;
@@ -96,7 +91,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
                     Thread.sleep(sleepTime / 1000000);
                 else
                     Thread.sleep(sleepTime / 2000000);
-            } catch (InterruptedException ex) {}
+            } catch (Exception ex) {}
 
             beginTime = System.nanoTime();
         }
@@ -105,6 +100,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     public void keyTyped(KeyEvent e) { // go phim
 
     }
+
     public void keyReleased(KeyEvent e) { // tha phim
         inputManager.processKeyReleased(e.getKeyCode());
     }
