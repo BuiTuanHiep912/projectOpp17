@@ -33,7 +33,6 @@ public class Hero extends Human {
         runForwardAnim.Update(System.nanoTime());
         runBackAinm.Update(System.nanoTime());
         jump.Update(System.nanoTime());
-
     }
 
     public void draw(Graphics2D g2) {
@@ -49,22 +48,18 @@ public class Hero extends Human {
                 else {
                     //System.out.println(getState());
                     if(getDirection() == STAY_DIR) {
-                        idleStay.setCurrentFrame(idleStay.getCurrentFrame());
                         idleStay.draw((int) (getPosX() - getGameWorld().camera.getPosX()),
                                       (int) (getPosY() - getGameWorld().camera.getPosY()), g2);
                     }
                     else if(getDirection() == RIGHT_DIR) {
-                        runForwardAnim.setCurrentFrame(runForwardAnim.getCurrentFrame());
                         runForwardAnim.draw((int) (getPosX() - getGameWorld().camera.getPosX()),
                                             (int) (getPosY() - getGameWorld().camera.getPosY()), g2);
                     }
                     else if(getDirection() == LEFT_DIR) {
-                        runBackAinm.setCurrentFrame(runBackAinm.getCurrentFrame());
                         runBackAinm.draw((int) (getPosX() - getGameWorld().camera.getPosX()),
                                          (int) (getPosY() - getGameWorld().camera.getPosY()), g2);
                     }
                     else {
-                        jump.setCurrentFrame(jump.getCurrentFrame());
                         jump.draw((int) (getPosX() - getGameWorld().camera.getPosX()),
                                          (int) (getPosY() - getGameWorld().camera.getPosY()), g2);
                     }
