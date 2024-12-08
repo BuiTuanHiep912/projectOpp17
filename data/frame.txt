@@ -1,5 +1,5 @@
 
-109
+114
 
 arrow
 image data/human/Arrow.png
@@ -328,4 +328,17 @@ image data/shaman/Walk_06.png
 shamanWalk_07
 image data/shaman/Walk_07.png
 
+yureiwalk1
+image data/yurei/yureiwalk1.png
 
+yureiwalk2
+image data/yurei/yureiwalk2.png
+
+yureiwalk3
+image data/yurei/yureiwalk3.png
+
+yureiwalk4
+image data/yurei/yureiwalk4.png
+
+yureiwalk5
+image data/yurei/yureiwalk5.png

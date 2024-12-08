@@ -23,8 +23,8 @@ public abstract class ParticularObject extends GameObject{
     public static final int NOBEHURT = 4;
     private int state = ALIVE;
 
-    private float width;
-    private float height;
+    protected float width;
+    protected float height;
     private float speedX;
     private float speedY;
     private int blood;

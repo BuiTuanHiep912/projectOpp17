@@ -3,8 +3,7 @@ package seventeenth.group.gameobjects;
 import seventeenth.group.gameobjects.GameWorld;
 import seventeenth.group.effect.Animation;
 import seventeenth.group.effect.CacheDataLoader;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
+import java.awt.*;
 
 public class RedEyeDevil extends ParticularObject {
 
@@ -14,66 +13,71 @@ public class RedEyeDevil extends ParticularObject {
     
     //private AudioClip shooting;
     
+    private float x1, x2;
+    
     public RedEyeDevil(float x, float y, GameWorld gameWorld) {
         super(x, y, 127, 89, 100, gameWorld);
-        backAnim = CacheDataLoader.getInstance().getAnimation("redeye");
-        forwardAnim = CacheDataLoader.getInstance().getAnimation("redeye");
-        forwardAnim.flipAllImage();
+        backAnim = CacheDataLoader.getInstance().getAnimation("yureiwalk");
+        forwardAnim = CacheDataLoader.getInstance().getAnimation("yureiwalk");
+        backAnim.flipAllImage();
         startTimeToShoot = 0;
+        setTimeForNoBeHurt(2000000000);   
+        x1 = x - 100;
+        x2 = x + 100;
+        setSpeedX(2);
         setDamage(10);
-        setTimeForNoBehurt(300000000);
-        //shooting = CacheDataLoader.getInstance().getSound("redeyeshooting");
     }
 
     @Override
     public void attack() {
-    /*
-        shooting.play();
-        Bullet bullet = new RedEyeBullet(getPosX(), getPosY(), getGameWorld());
-        if(getDirection() == LEFT_DIR) bullet.setSpeedX(-8);
-        else bullet.setSpeedX(8);
-        bullet.setTeamType(getTeamType());
-        getGameWorld().bulletManager.addObject(bullet);    
-    */
+    
+    //     shooting.play();
+    //     Bullet bullet = new RedEyeBullet(getPosX(), getPosY(), getGameWorld());
+    //     if(getDirection() == LEFT_DIR) bullet.setSpeedX(-8);
+    //     else bullet.setSpeedX(8);
+    //     bullet.setTeamType(getTeamType());
+    //     getGameWorld().bulletManager.addObject(bullet);    
+    
     }
 
-    
+    @Override
     public void Update(){
         super.Update();
-        if(System.nanoTime() - startTimeToShoot > 1000*10000000){
-            attack();
-            System.out.println("Red Eye attack");
-            startTimeToShoot = System.nanoTime();
-        }
+        if(getPosX() < x1)
+            setSpeedX(2);
+        else if(getPosX() > x2)
+            setSpeedX(-2);
+        setPosX(getPosX() + getSpeedX());
+
+        // if(System.nanoTime() - startTimeToShoot > 1000*10000000*1.5){
+        //     attack();
+        //     startTimeToShoot = System.nanoTime();
+        // }
     }
-    
+
     @Override
     public Rectangle getBoundForCollisionWithEnemy() {
-        Rectangle rect = getBoundForCollisionWithMap();
-        rect.x += 20;
-        rect.width -= 40;
+    Rectangle rect = getBoundForCollisionWithMap();
+    rect.x += 20;
+    rect.width -= 40;
         
-        return rect;
+    return rect;
     }
 
     @Override
     public void draw(Graphics2D g2) {
-        if(!isObjectOutOfCameraView()){
-            if(getState() == NOBEHURT && (System.nanoTime()/10000000)%2!=1){
-                // plash...
+        if(getState() == NOBEHURT && (System.nanoTime()/10000000)%2!=1){
+            // plash...
+        }else{
+            if(getSpeedX()<0){
+                backAnim.Update(System.nanoTime());
+                backAnim.draw((int) (getPosX() - getGameWorld().camera.getPosX()), 
+                        (int)(getPosY() - getGameWorld().camera.getPosY()), g2);
             }else{
-                if(getDirection() == LEFT_DIR){
-                    backAnim.Update(System.nanoTime());
-                    backAnim.draw((int) (getPosX() - getGameWorld().camera.getPosX()), 
-                            (int)(getPosY() - getGameWorld().camera.getPosY()), g2);
-                }else{
-                    forwardAnim.Update(System.nanoTime());
-                    forwardAnim.draw((int) (getPosX() - getGameWorld().camera.getPosX()), 
-                            (int)(getPosY() - getGameWorld().camera.getPosY()), g2);
-                }
+                forwardAnim.Update(System.nanoTime());
+                forwardAnim.draw((int) (getPosX() - getGameWorld().camera.getPosX()), 
+                        (int)(getPosY() - getGameWorld().camera.getPosY()), g2);
             }
         }
-        drawBoundForCollisionWithEnemy(g2);
     }
-    
 }

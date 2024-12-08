@@ -1,5 +1,5 @@
 
-18
+19
 
 attack
 attack1 100000000 attack2 100000000 attack3 100000000 attack4 100000000
@@ -55,3 +55,5 @@ shamanRun_01 5000000 shamanRun_02 5000000 shamanRun_03 5000000 shamanRun_04 5000
 shamanWalk
 shamanWalk_01 5000000 shamanWalk_02 5000000 shamanWalk_03 5000000 shamanWalk_04 5000000 shamanWalk_05 5000000 shamanWalk_06 5000000 shamanWalk_07 5000000
 
+yureiwalk
+yureiwalk1 100000000 yureiwalk2 100000000 yureiwalk3 100000000 yureiwalk4 100000000 yureiwalk5 100000000

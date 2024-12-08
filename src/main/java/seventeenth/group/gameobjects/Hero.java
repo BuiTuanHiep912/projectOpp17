@@ -85,20 +85,20 @@ public class Hero extends Human {
     public void run() {
         //System.out.println(getDirection());
         if(getDirection() == LEFT_DIR) {
-            setSpeedX(-3);
+            setSpeedX(-10);
             setSpeedY(0);
         }
         else if(getDirection() == RIGHT_DIR) {
-            setSpeedX(3);
+            setSpeedX(10);
             setSpeedY(0);
         }
         else if(getDirection() == UP_DIR) {
             setSpeedX(0);
-            setSpeedY(-3);
+            setSpeedY(-10);
         }
         else if(getDirection() == DOWN_DIR) {
             setSpeedX(0);
-            setSpeedY(3);
+            setSpeedY(10);
         }
     }
 
