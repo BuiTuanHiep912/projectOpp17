@@ -95,11 +95,11 @@ public class Hero extends Human {
         if (!isShooting) {
             BulletNext bulletNext = new BlueFire(this.getPosX(), this.getPosY(), this.getGameWorld());
             if (getDirection() == STAY_DIR) {
-                ((BulletNext)bulletNext).setSpeedX(-10.0F);
-                ((BulletNext)bulletNext).setPosX(((BulletNext)bulletNext).getPosX() - 40.0F);
+                ((BulletNext)bulletNext).setSpeedX(10.0F);
+                ((BulletNext)bulletNext).setPosX(((BulletNext)bulletNext).getPosX() + 40.0F);
                 if (this.getSpeedX() != 0.0F && this.getSpeedY() == 0.0F) {
-                    ((BulletNext)bulletNext).setPosX(((BulletNext)bulletNext).getPosX() - 10.0F);
-                    ((BulletNext)bulletNext).setPosY(((BulletNext)bulletNext).getPosY() - 5.0F);
+                    ((BulletNext)bulletNext).setPosX(((BulletNext)bulletNext).getPosX() + 10.0F);
+                    ((BulletNext)bulletNext).setPosY(((BulletNext)bulletNext).getPosY() + 5.0F);
                 }
             }
             ((BulletNext)bulletNext).setTeamType(getTeamType());
