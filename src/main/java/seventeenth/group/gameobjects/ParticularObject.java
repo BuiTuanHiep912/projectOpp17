@@ -146,6 +146,18 @@ public abstract class ParticularObject extends GameObject{
         hurtingCallback();
     }
 
+    public boolean isObjectOutOfCameraView(){
+        if ((getPosX() - getGameWorld().camera.getPosX() > getGameWorld().camera.getWidthView()) ||
+                (getPosX() - getGameWorld().camera.getPosX() < -50) ||
+                (getPosY() - getGameWorld().camera.getPosY() > getGameWorld().camera.getHeightView())
+                || (getPosY() - getGameWorld().camera.getPosY() < -50)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public void Update() {
         switch(state) {
             case ALIVE:

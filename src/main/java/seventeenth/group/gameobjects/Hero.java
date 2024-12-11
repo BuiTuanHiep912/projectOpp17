@@ -15,6 +15,9 @@ public class Hero extends Human {
     private Animation runForwardAnim, runBackAinm, runShootingForwardAim, runShootingBackAnim;
     private Animation idleStay;
     private Animation jump;
+    private Animation shotAnim;
+    private boolean isShooting = false;
+    private long lastShootingTime;
 
     public Hero(float x, float y, GameWorld gameWorld) {
         super(x, y, 60, 75, 100,  gameWorld);
@@ -25,6 +28,8 @@ public class Hero extends Human {
         runBackAinm.flipAllImage();
         idleStay = CacheDataLoader.getInstance().getAnimation("idle");
         jump = CacheDataLoader.getInstance().getAnimation("idle_2");
+        shotAnim = CacheDataLoader.getInstance().getAnimation("shot_1");
+
     }
 
     public void update() {
@@ -33,6 +38,11 @@ public class Hero extends Human {
         runForwardAnim.Update(System.nanoTime());
         runBackAinm.Update(System.nanoTime());
         jump.Update(System.nanoTime());
+        shotAnim.Update(System.nanoTime());
+        if (this.isShooting && System.nanoTime() - this.lastShootingTime > 500000000L) {
+            this.isShooting = false;
+        }
+
     }
 
     public void draw(Graphics2D g2) {
@@ -48,20 +58,32 @@ public class Hero extends Human {
                 else {
                     //System.out.println(getState());
                     if(getDirection() == STAY_DIR) {
-                        idleStay.draw((int) (getPosX() - getGameWorld().camera.getPosX()),
-                                      (int) (getPosY() - getGameWorld().camera.getPosY()), g2);
+                        if (isShooting){
+                            shotAnim.Update(System.nanoTime());
+                            shotAnim.setCurrentFrame(shotAnim.getCurrentFrame());
+                            shotAnim.draw((int) (getPosX() - getGameWorld().camera.getPosX()),
+                                    (int) (getPosY() - getGameWorld().camera.getPosY()), g2);
+                        }
+                        else {
+                            idleStay.setCurrentFrame(idleStay.getCurrentFrame());
+                            idleStay.draw((int) (getPosX() - getGameWorld().camera.getPosX()),
+                                    (int) (getPosY() - getGameWorld().camera.getPosY()), g2);
+                        }
                     }
                     else if(getDirection() == RIGHT_DIR) {
+                        runForwardAnim.setCurrentFrame(runForwardAnim.getCurrentFrame());
                         runForwardAnim.draw((int) (getPosX() - getGameWorld().camera.getPosX()),
-                                            (int) (getPosY() - getGameWorld().camera.getPosY()), g2);
+                                (int) (getPosY() - getGameWorld().camera.getPosY()), g2);
                     }
                     else if(getDirection() == LEFT_DIR) {
+                        runBackAinm.setCurrentFrame(runBackAinm.getCurrentFrame());
                         runBackAinm.draw((int) (getPosX() - getGameWorld().camera.getPosX()),
-                                         (int) (getPosY() - getGameWorld().camera.getPosY()), g2);
+                                (int) (getPosY() - getGameWorld().camera.getPosY()), g2);
                     }
                     else {
+                        jump.setCurrentFrame(jump.getCurrentFrame());
                         jump.draw((int) (getPosX() - getGameWorld().camera.getPosX()),
-                                         (int) (getPosY() - getGameWorld().camera.getPosY()), g2);
+                                (int) (getPosY() - getGameWorld().camera.getPosY()), g2);
                     }
                 }
                 break;
@@ -69,7 +91,24 @@ public class Hero extends Human {
     }
 
     @Override
-    public void attack() {}
+    public void attack() {
+        if (!isShooting) {
+            BulletNext bulletNext = new BlueFire(this.getPosX(), this.getPosY(), this.getGameWorld());
+            if (getDirection() == STAY_DIR) {
+                ((BulletNext)bulletNext).setSpeedX(-10.0F);
+                ((BulletNext)bulletNext).setPosX(((BulletNext)bulletNext).getPosX() - 40.0F);
+                if (this.getSpeedX() != 0.0F && this.getSpeedY() == 0.0F) {
+                    ((BulletNext)bulletNext).setPosX(((BulletNext)bulletNext).getPosX() - 10.0F);
+                    ((BulletNext)bulletNext).setPosY(((BulletNext)bulletNext).getPosY() - 5.0F);
+                }
+            }
+            ((BulletNext)bulletNext).setTeamType(getTeamType());
+            this.getGameWorld().bulletManager.addObject(bulletNext);
+            this.lastShootingTime = System.nanoTime();
+            this.isShooting = true;
+        }
+
+    }
 
     @Override
     public Rectangle getBoundForCollisionWithEnemy() {
@@ -83,22 +122,22 @@ public class Hero extends Human {
 
     @Override
     public void run() {
-        //System.out.println(getDirection());
+        System.out.println(getDirection());
         if(getDirection() == LEFT_DIR) {
-            setSpeedX(-10);
+            setSpeedX(-3);
             setSpeedY(0);
         }
         else if(getDirection() == RIGHT_DIR) {
-            setSpeedX(10);
+            setSpeedX(3);
             setSpeedY(0);
         }
         else if(getDirection() == UP_DIR) {
             setSpeedX(0);
-            setSpeedY(-10);
+            setSpeedY(-3);
         }
         else if(getDirection() == DOWN_DIR) {
             setSpeedX(0);
-            setSpeedY(10);
+            setSpeedY(3);
         }
     }
 
