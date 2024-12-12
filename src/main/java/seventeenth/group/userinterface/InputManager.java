@@ -40,6 +40,14 @@ public class InputManager {
             gameWorld.hero.setDirection(gameWorld.hero.RIGHT_DIR);
             gameWorld.hero.run();
         }
+        /*else if(keyCode == KeyEvent.VK_A) {
+            gameWorld.hero.setDirection(gameWorld.hero.SHOOTLEFT_DIR);
+            gameWorld.hero.run();
+        }
+        else if(keyCode == KeyEvent.VK_D){
+            gameWorld.hero.setDirection(gameWorld.hero.SHOOTRIGHT_DIR);
+            gameWorld.hero.run();
+        }*/
         else if(keyCode == KeyEvent.VK_ENTER) {
             System.out.println("You press ENTER");
         }
@@ -47,6 +55,7 @@ public class InputManager {
             System.out.println("You press SPACE");
         }
         else if(keyCode == KeyEvent.VK_C) {
+            gameWorld.hero.attack();
             System.out.println("You press C");
         }
     }
@@ -63,6 +72,9 @@ public class InputManager {
         else if(keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_RIGHT) {
             gameWorld.hero.stopRun();  // Dừng di chuyển theo chiều X
             //System.out.println("You released");
+        }
+        else if(keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_D) {
+            gameWorld.hero.stopRun();
         }
         //System.out.println("You released " + KeyEvent.getKeyText(keyCode));
         else if(keyCode == KeyEvent.VK_ENTER) {

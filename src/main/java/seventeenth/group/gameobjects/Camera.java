@@ -30,17 +30,19 @@ public class Camera extends GameObject {
             Hero mainCharacter = getGameWorld().hero;
 
             if(mainCharacter.getPosX() - getPosX() > 350) {
-                setPosX(mainCharacter.getPosX() - 350);
+                    setPosX(mainCharacter.getPosX() - 350);
             }
             else if(mainCharacter.getPosX() - getPosX() < 350) {
-                setPosX(mainCharacter.getPosX() - 350);
+                if(mainCharacter.getPosX() - 350 >= 0)
+                    setPosX(mainCharacter.getPosX() - 350);
             }
 
             if(mainCharacter.getPosY() - getPosY() > 400){
                 setPosY(mainCharacter.getPosY() - 400);
             }
             else if(mainCharacter.getPosY() - getPosY() < 250) {
-                setPosY(mainCharacter.getPosY() - 250);
+                if(mainCharacter.getPosY() - 250 >= 0)
+                    setPosY(mainCharacter.getPosY() - 250);
             }
         }
     }

@@ -8,6 +8,7 @@ public class GameWorld {
 
     public Hero hero;
     public PhysicalMap physicalMap;
+    public BulletManager bulletManager;
     public Camera camera;
     public RedEyeDevil redEyeDevil;
     public FinalBoss finalBoss;
@@ -23,6 +24,7 @@ public class GameWorld {
     public void Update() {
         hero.update();
         camera.Update();
+        bulletManager.UpdateObjects();
         redEyeDevil.Update();
         finalBoss.Update();
     }
@@ -30,6 +32,7 @@ public class GameWorld {
     public void Render(Graphics2D g2) {
         hero.draw(g2);
         physicalMap.draw(g2);
+        bulletManager.draw(g2);
         redEyeDevil.draw(g2);
         finalBoss.draw(g2);
     }
