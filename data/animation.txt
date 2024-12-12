@@ -38,7 +38,7 @@ shamanHurt
 shamanHurt_01 5000000 shamanHurt_02 5000000
 
 shamanIdle
-shamanIdle_01 5000000 shamanIdle_02 5000000 shamanIdle_03 5000000 shamanIdle_04 5000000 shamanIdle_05 5000000
+shamanIdle_01 100000000 shamanIdle_02 100000000 shamanIdle_03 100000000 shamanIdle_04 100000000 shamanIdle_05 100000000
 
 shamanJump
 shamanJump_01 5000000 shamanJump_02 5000000 shamanJump_03 5000000 shamanJump_04 5000000 shamanJump_05 5000000 shamanJump_06 5000000

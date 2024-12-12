@@ -21,18 +21,15 @@ public class FinalBoss extends Human {
     
     public FinalBoss(float x, float y, GameWorld gameWorld) {
         super(x, y, 110, 150, 100, gameWorld);
-        idleback = CacheDataLoader.getInstance().getAnimation("boss_idle");
-        idleforward = CacheDataLoader.getInstance().getAnimation("boss_idle");
-        idleforward.flipAllImage();
+        idleback = CacheDataLoader.getInstance().getAnimation("shamanIdle");
+        idleforward = CacheDataLoader.getInstance().getAnimation("shamanIdle");
+        idleback.flipAllImage();
         
-        shootingback = CacheDataLoader.getInstance().getAnimation("boss_shooting");
-        shootingforward = CacheDataLoader.getInstance().getAnimation("boss_shooting");
-        shootingforward.flipAllImage();
+        // shootingback = CacheDataLoader.getInstance().getAnimation("boss_shooting");
+        // shootingforward = CacheDataLoader.getInstance().getAnimation("boss_shooting");
+        // shootingback.flipAllImage();
         
-        /*slideback = CacheDataLoader.getInstance().getAnimation("boss_slide");
-        slideforward = CacheDataLoader.getInstance().getAnimation("boss_slide");
-        slideforward.flipAllImage();
-        
+        /*
         setTimeForNoBehurt(500*1000000);
         setDamage(10);
         
@@ -49,43 +46,42 @@ public class FinalBoss extends Human {
 
     public void Update(){
         super.Update();
-        
         if(getGameWorld().hero.getPosX() > getPosX())
             setDirection(RIGHT_DIR);
         else setDirection(LEFT_DIR);
         
-        if(startTimeForAttacked == 0)
-            startTimeForAttacked = System.currentTimeMillis();
-        else if(System.currentTimeMillis() - startTimeForAttacked > 300){
-            attack();
-            startTimeForAttacked = System.currentTimeMillis();
-        }
+        // if(startTimeForAttacked == 0)
+        //     startTimeForAttacked = System.currentTimeMillis();
+        // else if(System.currentTimeMillis() - startTimeForAttacked > 300){
+        //     attack();
+        //     startTimeForAttacked = System.currentTimeMillis();
+        // }
         
-        if(!attackType[attackIndex].equals("NONE")){
-            if(attackType[attackIndex].equals("shooting")){
+        // if(!attackType[attackIndex].equals("NONE")){
+        //     if(attackType[attackIndex].equals("shooting")){
                 
-                /*Bullet bullet = new RocketBullet(getPosX(), getPosY() - 50, getGameWorld());
-                if(getDirection() == LEFT_DIR) bullet.setSpeedX(-4);
-                else bullet.setSpeedX(4);
-                bullet.setTeamType(getTeamType());
-                getGameWorld().bulletManager.addObject(bullet);
+        //         Bullet bullet = new RocketBullet(getPosX(), getPosY() - 50, getGameWorld());
+        //         if(getDirection() == LEFT_DIR) bullet.setSpeedX(-4);
+        //         else bullet.setSpeedX(4);
+        //         bullet.setTeamType(getTeamType());
+        //         getGameWorld().bulletManager.addObject(bullet);
                 
-            }else if(attackType[attackIndex].equals("slide")){
+        //     }else if(attackType[attackIndex].equals("slide")){
                 
-                if(getGameWorld().physicalMap.haveCollisionWithLeftWall(getBoundForCollisionWithMap())!=null)
-                    setSpeedX(5);
-                if(getGameWorld().physicalMap.haveCollisionWithRightWall(getBoundForCollisionWithMap())!=null)
-                    setSpeedX(-5);
+        //         if(getGameWorld().physicalMap.haveCollisionWithLeftWall(getBoundForCollisionWithMap())!=null)
+        //             setSpeedX(5);
+        //         if(getGameWorld().physicalMap.haveCollisionWithRightWall(getBoundForCollisionWithMap())!=null)
+        //             setSpeedX(-5);
                 
                 
-                setPosX(getPosX() + getSpeedX());
-                */
-            }
-        }else{
-            // stop attack
-            setSpeedX(0);
-        }
-        
+        //         setPosX(getPosX() + getSpeedX());
+                
+        //     }
+        // }else{
+        //     // stop attack
+        //     setSpeedX(0);
+        // }
+
     }
     
     @Override
@@ -155,7 +151,7 @@ public class FinalBoss extends Human {
             System.out.println("Plash...");
         }else{
             
-            if(attackType[attackIndex].equals("NONE")){
+            //if(attackType[attackIndex].equals("NONE")){
                 if(getDirection() == RIGHT_DIR){
                     idleforward.Update(System.nanoTime());
                     idleforward.draw((int) (getPosX() - getGameWorld().camera.getPosX()), (int) getPosY() - (int) getGameWorld().camera.getPosY(), g2);
@@ -163,27 +159,27 @@ public class FinalBoss extends Human {
                     idleback.Update(System.nanoTime());
                     idleback.draw((int) (getPosX() - getGameWorld().camera.getPosX()), (int) getPosY() - (int) getGameWorld().camera.getPosY(), g2);
                 }
-            }else if(attackType[attackIndex].equals("shooting")){
+            // }else if(attackType[attackIndex].equals("shooting")){
                 
-                if(getDirection() == RIGHT_DIR){
-                    shootingforward.Update(System.nanoTime());
-                    shootingforward.draw((int) (getPosX() - getGameWorld().camera.getPosX()), (int) getPosY() - (int) getGameWorld().camera.getPosY(), g2);
-                }else{
-                    shootingback.Update(System.nanoTime());
-                    shootingback.draw((int) (getPosX() - getGameWorld().camera.getPosX()), (int) getPosY() - (int) getGameWorld().camera.getPosY(), g2);
-                }
+            //     if(getDirection() == RIGHT_DIR){
+            //         shootingforward.Update(System.nanoTime());
+            //         shootingforward.draw((int) (getPosX() - getGameWorld().camera.getPosX()), (int) getPosY() - (int) getGameWorld().camera.getPosY(), g2);
+            //     }else{
+            //         shootingback.Update(System.nanoTime());
+            //         shootingback.draw((int) (getPosX() - getGameWorld().camera.getPosX()), (int) getPosY() - (int) getGameWorld().camera.getPosY(), g2);
+            //     }
                 
-            }else if(attackType[attackIndex].equals("slide")){
-                if(getSpeedX() > 0){
-                    slideforward.Update(System.nanoTime());
-                    slideforward.draw((int) (getPosX() - getGameWorld().camera.getPosX()), (int) getPosY() - (int) getGameWorld().camera.getPosY() + 50, g2);
-                }else{
-                    slideback.Update(System.nanoTime());
-                    slideback.draw((int) (getPosX() - getGameWorld().camera.getPosX()), (int) getPosY() - (int) getGameWorld().camera.getPosY() + 50, g2);
-                }
-            }
+            // }else if(attackType[attackIndex].equals("slide")){
+            //     if(getSpeedX() > 0){
+            //         slideforward.Update(System.nanoTime());
+            //         slideforward.draw((int) (getPosX() - getGameWorld().camera.getPosX()), (int) getPosY() - (int) getGameWorld().camera.getPosY() + 50, g2);
+            //     }else{
+            //         slideback.Update(System.nanoTime());
+            //         slideback.draw((int) (getPosX() - getGameWorld().camera.getPosX()), (int) getPosY() - (int) getGameWorld().camera.getPosY() + 50, g2);
+            //     }
+            // }
         }
-       // drawBoundForCollisionWithEnemy(g2);
+    //    drawBoundForCollisionWithEnemy(g2);
     }
     
 }
