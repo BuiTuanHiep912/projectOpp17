@@ -42,6 +42,8 @@ public class Hero extends Human {
         if (this.isShooting && System.nanoTime() - this.lastShootingTime > 500000000L) {
             this.isShooting = false;
         }
+        // System.out.println(getPosX());
+        // System.out.println(getPosY());
 
     }
 
@@ -124,20 +126,20 @@ public class Hero extends Human {
     public void run() {
         //System.out.println(getDirection());
         if(getDirection() == LEFT_DIR) {
-            setSpeedX(-10);
+            setSpeedX(-3);
             setSpeedY(0);
         }
         else if(getDirection() == RIGHT_DIR) {
-            setSpeedX(10);
+            setSpeedX(3);
             setSpeedY(0);
         }
         else if(getDirection() == UP_DIR) {
             setSpeedX(0);
-            setSpeedY(-10);
+            setSpeedY(-3);
         }
         else if(getDirection() == DOWN_DIR) {
             setSpeedX(0);
-            setSpeedY(10);
+            setSpeedY(3);
         }
     }
 

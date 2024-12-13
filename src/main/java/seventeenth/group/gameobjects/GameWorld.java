@@ -17,7 +17,7 @@ public class GameWorld {
     public GameWorld() {
         particularObjectManager = new ParticularObjectManager(this);
         bulletManager = new BulletManager(this);
-
+        // test FinalBoss : x=2400 y=2218
         hero = new Hero(70, 470,this);
         particularObjectManager.addObject(hero);
 
@@ -29,10 +29,9 @@ public class GameWorld {
         redEyeDevil.setTeamType(ParticularObject.ENEMY_TEAM);
         particularObjectManager.addObject(redEyeDevil);
 
-        finalBoss = new FinalBoss(600, 460, this);
+        finalBoss = new FinalBoss(2874, 2218, this);
         finalBoss.setTeamType(ParticularObject.ENEMY_TEAM);
         particularObjectManager.addObject(finalBoss);
-        
     }
 
     public void Update() {
