@@ -143,6 +143,10 @@ public class FinalBoss extends Human {
 
     @Override
     public void draw(Graphics2D g2) {
+        if (getState()==ParticularObject.DEATH) {
+            
+            return;
+        }
         
         if(getState() == NOBEHURT && (System.nanoTime()/10000000)%2!=1)
         {
