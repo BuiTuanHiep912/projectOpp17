@@ -40,6 +40,13 @@ public class BlueFire extends BulletNext {
     @Override
     public void Update(){
         super.Update();
+        ParticularObject object = getGameWorld().particularObjectManager.getCollisionWithEnemyObject(this);
+        if(object!=null && object.getState() == ALIVE){
+            setBlood(0);
+            object.setBlood(object.getBlood() - getDamage());
+            object.setState(BEHURT);
+            System.out.println("Bullet set behurt for enemy");
+        }
     }
 
     @Override

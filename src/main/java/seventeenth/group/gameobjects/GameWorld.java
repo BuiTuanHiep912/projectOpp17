@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 
 public class GameWorld {
 
+    public ParticularObjectManager particularObjectManager;
     public Hero hero;
     public PhysicalMap physicalMap;
     public BulletManager bulletManager;
@@ -14,17 +15,31 @@ public class GameWorld {
     public FinalBoss finalBoss;
 
     public GameWorld() {
+        particularObjectManager = new ParticularObjectManager(this);
+        bulletManager = new BulletManager(this);
+
         hero = new Hero(70, 470,this);
+        particularObjectManager.addObject(hero);
+
         physicalMap = new PhysicalMap(0, 0, this);
+
         camera = new Camera(0, 0, GameFrame.SCREEN_WIDTH,  GameFrame.SCREEN_HEIGHT, this);
-        redEyeDevil = new RedEyeDevil(500, 470, this);
+
+        redEyeDevil = new RedEyeDevil(300, 470, this);
+        redEyeDevil.setTeamType(ParticularObject.ENEMY_TEAM);
+        particularObjectManager.addObject(redEyeDevil);
+
         finalBoss = new FinalBoss(600, 460, this);
+        finalBoss.setTeamType(ParticularObject.ENEMY_TEAM);
+        particularObjectManager.addObject(finalBoss);
+        
     }
 
     public void Update() {
         hero.update();
         camera.Update();
         bulletManager.UpdateObjects();
+        particularObjectManager.UpdateObjects();
         redEyeDevil.Update();
         finalBoss.Update();
     }

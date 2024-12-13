@@ -29,19 +29,19 @@ public class FinalBoss extends Human {
         // shootingforward = CacheDataLoader.getInstance().getAnimation("boss_shooting");
         // shootingback.flipAllImage();
         
-        /*
-        setTimeForNoBehurt(500*1000000);
+        
+        setTimeForNoBeHurt(1000000000);
         setDamage(10);
         
-        attackType[0] = "NONE";
-        attackType[1] = "shooting";
-        attackType[2] = "NONE";
-        attackType[3] = "slide";
+        // attackType[0] = "NONE";
+        // attackType[1] = "shooting";
+        // attackType[2] = "NONE";
+        // attackType[3] = "slide";
         
-        timeAttack.put("NONE", new Long(2000));
-        timeAttack.put("shooting", new Long(500));
-        timeAttack.put("slide", new Long(5000));
-        */
+        // timeAttack.put("NONE", new Long(2000));
+        // timeAttack.put("shooting", new Long(500));
+        // timeAttack.put("slide", new Long(5000));
+        
     }
 
     public void Update(){
@@ -134,14 +134,12 @@ public class FinalBoss extends Human {
 
     @Override
     public Rectangle getBoundForCollisionWithEnemy() {
-        if(attackType[attackIndex].equals("slide")){
-            Rectangle rect = getBoundForCollisionWithMap();
-            rect.y += 100;
-            rect.height -= 100;
-            return rect;
-        }else
-            return getBoundForCollisionWithMap();
-    }
+        Rectangle rect = getBoundForCollisionWithMap();
+        rect.x += 20;
+        rect.width -= 40;
+
+        return rect;
+        }
 
     @Override
     public void draw(Graphics2D g2) {

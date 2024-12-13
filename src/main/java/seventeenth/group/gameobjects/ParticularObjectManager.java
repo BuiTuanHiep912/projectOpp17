@@ -56,6 +56,7 @@ public class ParticularObjectManager {
                 }
                 if (object.getState() == ParticularObject.DEATH){
                     particularObjects.remove(id);
+                    System.out.println("nigger");
                 }
             }
         }

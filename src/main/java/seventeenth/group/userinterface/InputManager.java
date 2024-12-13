@@ -56,7 +56,7 @@ public class InputManager {
         }
         else if(keyCode == KeyEvent.VK_C) {
             gameWorld.hero.attack();
-            System.out.println("You press C");
+            //System.out.println("You press C");
         }
     }
 

@@ -162,7 +162,7 @@ public abstract class ParticularObject extends GameObject{
         switch(state) {
             case ALIVE:
                 // hehe
-                ParticularObject object = getGameWorld().particularObjectManager.getCollisionWidthEnemyObject(this);
+                ParticularObject object = getGameWorld().particularObjectManager.getCollisionWithEnemyObject(this);
                 if(object!=null){
                     
                     
@@ -171,15 +171,13 @@ public abstract class ParticularObject extends GameObject{
                         // switch state to fey if object die
                         
                         
-                        System.out.println("eat damage.... from collision with enemy........ "+object.getDamage());
+                        // System.out.println("eat damage.... from collision with enemy........ "+object.getDamage());
                         beHurt(object.getDamage());
                     }
                     
                 }
                 
                 
-                
-                break;
                 
                 break;
             case BEHURT:

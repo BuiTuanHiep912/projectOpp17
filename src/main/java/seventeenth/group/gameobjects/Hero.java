@@ -53,7 +53,7 @@ public class Hero extends Human {
             case NOBEHURT:
 
                 if(getState() == NOBEHURT && (System.nanoTime() / 1000000000) % 2 == 1) {
-                    System.out.println("Plash...");
+                    System.out.println("Plash..."+getBlood());
                 }
                 else {
                     //System.out.println(getState());
@@ -118,26 +118,26 @@ public class Hero extends Human {
         return rect;
     }
 
-    public void hurtingCallback() {};
+    public void hurtingCallback() {    };
 
     @Override
     public void run() {
-        System.out.println(getDirection());
+        //System.out.println(getDirection());
         if(getDirection() == LEFT_DIR) {
-            setSpeedX(-3);
+            setSpeedX(-10);
             setSpeedY(0);
         }
         else if(getDirection() == RIGHT_DIR) {
-            setSpeedX(3);
+            setSpeedX(10);
             setSpeedY(0);
         }
         else if(getDirection() == UP_DIR) {
             setSpeedX(0);
-            setSpeedY(-3);
+            setSpeedY(-10);
         }
         else if(getDirection() == DOWN_DIR) {
             setSpeedX(0);
-            setSpeedY(3);
+            setSpeedY(10);
         }
     }
 
