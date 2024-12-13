@@ -111,33 +111,34 @@ public class FinalBoss extends Human {
     public void attack() {
     
         // only switch state attack
-        
-        if(System.currentTimeMillis() - lastAttackTime > timeAttack.get(attackType[attackIndex])){
-            lastAttackTime = System.currentTimeMillis();
-            
-            attackIndex ++;
-            if(attackIndex >= attackType.length) attackIndex = 0;
-            if(attackType[attackIndex].equals("boulderdrop")){
-                BoulderDrop boulder = new BoulderDrop(getGameWorld().hero.getPosX(), getGameWorld().hero.getPosY() - 400, getGameWorld());
-                boulder.setSpeedY(6);
-                boulder.setTeamType(2);
-                getGameWorld().bulletManager.addObject(boulder);
+        if (!isObjectOutOfCameraView()){
+            if(System.currentTimeMillis() - lastAttackTime > timeAttack.get(attackType[attackIndex])){
+                lastAttackTime = System.currentTimeMillis();
+                
+                attackIndex ++;
+                if(attackIndex >= attackType.length) attackIndex = 0;
+                if(attackType[attackIndex].equals("boulderdrop")){
+                    BoulderDrop boulder = new BoulderDrop(getGameWorld().hero.getPosX(), getGameWorld().hero.getPosY() - 400, getGameWorld());
+                    boulder.setSpeedY(6);
+                    boulder.setTeamType(2);
+                    getGameWorld().bulletManager.addObject(boulder);
+                    
+                }
+                if(attackType[attackIndex].equals("magicshot")){
+                    MagicShot magicshot = new MagicShot(this.getPosX(), this.getPosY(), this.getGameWorld());
+                if (getDirection() == LEFT_DIR) {
+                    (magicshot).setSpeedX(-10.0F);
+                    (magicshot).setPosX((magicshot).getPosX() + 40.0F);
+                    if (this.getSpeedX() != 0.0F && this.getSpeedY() == 0.0F) {
+                        (magicshot).setPosX((magicshot).getPosX() + 10.0F);
+                        (magicshot).setPosY((magicshot).getPosY() + 5.0F);
+                    }
+                }
+                (magicshot).setTeamType(getTeamType());
+                this.getGameWorld().bulletManager.addObject(magicshot);
+                }
                 
             }
-            if(attackType[attackIndex].equals("magicshot")){
-                MagicShot magicshot = new MagicShot(this.getPosX(), this.getPosY(), this.getGameWorld());
-            if (getDirection() == LEFT_DIR) {
-                (magicshot).setSpeedX(-10.0F);
-                (magicshot).setPosX((magicshot).getPosX() + 40.0F);
-                if (this.getSpeedX() != 0.0F && this.getSpeedY() == 0.0F) {
-                    (magicshot).setPosX((magicshot).getPosX() + 10.0F);
-                    (magicshot).setPosY((magicshot).getPosY() + 5.0F);
-                }
-            }
-            (magicshot).setTeamType(getTeamType());
-            this.getGameWorld().bulletManager.addObject(magicshot);
-            }
-            
         }
     }
 
