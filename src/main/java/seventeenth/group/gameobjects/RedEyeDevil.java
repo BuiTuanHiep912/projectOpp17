@@ -20,7 +20,7 @@ public class RedEyeDevil extends ParticularObject {
         backAnim = CacheDataLoader.getInstance().getAnimation("yureiwalk");
         forwardAnim = CacheDataLoader.getInstance().getAnimation("yureiwalk");
         backAnim.flipAllImage();
-        // deathAnim = CacheDataLoader.getInstance().getAnimation("");
+        deathAnim = CacheDataLoader.getInstance().getAnimation("Dead");
         startTimeToShoot = 0;
         setTimeForNoBeHurt(1000000000);   
         x1 = x - 100;
@@ -68,7 +68,9 @@ public class RedEyeDevil extends ParticularObject {
     @Override
     public void draw(Graphics2D g2) {
         if (getState()==ParticularObject.DEATH) {
-            
+            deathAnim.Update(System.nanoTime());
+            deathAnim.draw((int) (getPosX() - getGameWorld().camera.getPosX()), 
+            (int)(getPosY() - getGameWorld().camera.getPosY()), g2);
             return;
         }
         if(!isObjectOutOfCameraView()){
