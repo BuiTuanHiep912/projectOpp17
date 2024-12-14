@@ -1,8 +1,10 @@
 package seventeenth.group.gameobjects;
 
+import seventeenth.group.userinterface.BackgroundPanel;
 import seventeenth.group.userinterface.GameFrame;
 import seventeenth.group.userinterface.GamePanel;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -13,11 +15,14 @@ public class GameWorld {
     public PhysicalMap physicalMap;
     public BulletManager bulletManager;
     public Camera camera;
-    public RedEyeDevil redEyeDevil;
+    public RedEyeDevil redEyeDevil1, redEyeDevil2, redEyeDevil3,  redEyeDevil4,  redEyeDevil5,  redEyeDevil6,  redEyeDevil7,  redEyeDevil8,  redEyeDevil9;
     public ParticularObjectManager particularObjectManager;
+    public FinalBoss finalBoss;
+    public BackgroundMap backgroundMap;
 
+    public static final int finalBossX = 2400;
+    public static final int finalBossY = 2040;
 
-    public static final int finalBossX = 3600;
 
     public static final int INIT_GAME = 0;
     public static final int TUTORIAL = 1;
@@ -40,12 +45,13 @@ public class GameWorld {
     public int currentSize = 1;
 
     private boolean finalbossTrigger = true;
-    ParticularObject boss;
+    // ParticularObject boss;
 
     private int numberOfLife = 3;
 
     public int commandNum = 0;
     public int titleScreenState = 0;
+
 
     public GameWorld() {
         texts1[0] = "We are heros, and our mission is protecting our Home\nEarth....";
@@ -54,14 +60,54 @@ public class GameWorld {
         texts1[2] = "Now is the time for us, kill it and get freedom!....";
         texts1[3] = "      LET'S GO!.....";
         textTutorial = texts1[0];
+
+        particularObjectManager = new ParticularObjectManager(this);
+
         bufferedImage = new BufferedImage(GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT, BufferedImage.TYPE_INT_ARGB);
-        hero = new Hero(70, 470,this);
-        physicalMap = new PhysicalMap(0, 0, this);
-        camera = new Camera(0, 0, GameFrame.SCREEN_WIDTH,  GameFrame.SCREEN_HEIGHT, this);
+
         bulletManager = new BulletManager(this);
-        redEyeDevil = new RedEyeDevil(1000, 470, this);
+ //2380 2030
+        hero = new Hero(70, 470,this);
+        particularObjectManager.addObject(hero);
+
+        physicalMap = new PhysicalMap(0, 0, this);
+        backgroundMap = new BackgroundMap(0,0,this);
+
+        camera = new Camera(0, 0, GameFrame.SCREEN_WIDTH,  GameFrame.SCREEN_HEIGHT, this);
+
+        redEyeDevil1 = new RedEyeDevil(650, 430, this);
+        redEyeDevil2 = new RedEyeDevil(1011, 2260, this);
+        redEyeDevil3 = new RedEyeDevil(1167, 186, this);
+        redEyeDevil4 = new RedEyeDevil(1936, 154, this);
+        redEyeDevil5 = new RedEyeDevil(1250, 685, this);
+        redEyeDevil6 = new RedEyeDevil(1555, 988, this);
+        redEyeDevil7 = new RedEyeDevil(1170, 1490, this);
+        redEyeDevil8 = new RedEyeDevil(2260, 696, this);
+        redEyeDevil9 = new RedEyeDevil(2402, 1242, this);
+
+        redEyeDevil1.setTeamType(ParticularObject.ENEMY_TEAM);
+        redEyeDevil2.setTeamType(ParticularObject.ENEMY_TEAM);
+        redEyeDevil3.setTeamType(ParticularObject.ENEMY_TEAM);
+        redEyeDevil4.setTeamType(ParticularObject.ENEMY_TEAM);
+        redEyeDevil5.setTeamType(ParticularObject.ENEMY_TEAM);
+        redEyeDevil6.setTeamType(ParticularObject.ENEMY_TEAM);
+        redEyeDevil7.setTeamType(ParticularObject.ENEMY_TEAM);
+        redEyeDevil8.setTeamType(ParticularObject.ENEMY_TEAM);
+        redEyeDevil9.setTeamType(ParticularObject.ENEMY_TEAM);
+
+        particularObjectManager.addObject(redEyeDevil1);
+        particularObjectManager.addObject(redEyeDevil2);
+        particularObjectManager.addObject(redEyeDevil3);
+        particularObjectManager.addObject(redEyeDevil4);
+        particularObjectManager.addObject(redEyeDevil5);
+        particularObjectManager.addObject(redEyeDevil6);
+        particularObjectManager.addObject(redEyeDevil7);
+        particularObjectManager.addObject(redEyeDevil8);
+        particularObjectManager.addObject(redEyeDevil9);
 
     }
+
+
 
     public int getTitleScreenState() {
         return titleScreenState;
@@ -171,10 +217,19 @@ public class GameWorld {
     }
 
     public void Update() {
-        hero.update();
-        camera.Update();
-        bulletManager.UpdateObjects();
-        redEyeDevil.Update();
+        // hero.update();
+        // camera.Update();
+        // bulletManager.UpdateObjects();
+        // particularObjectManager.UpdateObjects();
+        // redEyeDevil1.Update();
+        // redEyeDevil2.Update();
+        // redEyeDevil3.Update();
+        // redEyeDevil4.Update();
+        // redEyeDevil5.Update();
+        // redEyeDevil6.Update();
+        // redEyeDevil7.Update();
+        // redEyeDevil8.Update();
+        // redEyeDevil9.Update();
         switch (state) {
             case INIT_GAME:
                 break;
@@ -185,26 +240,36 @@ public class GameWorld {
                 hero.update();
                 camera.Update();
                 bulletManager.UpdateObjects();
-                redEyeDevil.Update();
-
-                if(hero.getPosX() > finalBossX && finalbossTrigger){
+                particularObjectManager.UpdateObjects();
+                redEyeDevil1.Update();
+                redEyeDevil2.Update();
+                redEyeDevil3.Update();
+                redEyeDevil4.Update();
+                redEyeDevil5.Update();
+                redEyeDevil6.Update();
+                redEyeDevil7.Update();
+                redEyeDevil8.Update();
+                redEyeDevil9.Update();
+                if(finalBoss!=null) finalBoss.Update();
+                if(hero.getPosX() > finalBossX && hero.getPosY() > finalBossY && finalbossTrigger){
                     finalbossTrigger = false;
                     switchState(TUTORIAL);
                     tutorialState = MEETFINALBOSS;
                     storyTutorial = 0;
                     openIntroGameY = 550;
 
-                    boss = new FinalBoss(finalBossX + 700, 460, this);
-                    boss.setTeamType(ParticularObject.ENEMY_TEAM);
-                    boss.setDirection(ParticularObject.LEFT_DIR);
-                    particularObjectManager.addObject(boss);
+                    finalBoss = new FinalBoss(2874, 2218, this);                   
+                    finalBoss.setTeamType(ParticularObject.ENEMY_TEAM);
+                    finalBoss.setDirection(ParticularObject.LEFT_DIR);
+                    particularObjectManager.addObject(finalBoss);
+                    switchState(GAMEPLAY);
 
                 }
 
                 if(hero.getState() == ParticularObject.DEATH) {
                     numberOfLife--;
                     if(numberOfLife >= 0) {
-                        hero.setBlood(100);
+                        hero.setBlood(10);
                         hero.setPosY(hero.getPosY() - 50);
                         hero.setState(ParticularObject.NOBEHURT);
                         particularObjectManager.addObject(hero);
@@ -213,15 +278,14 @@ public class GameWorld {
                         switchState(GAMEOVER);
                     }
                 }
-                if(!finalbossTrigger && boss.getState() == ParticularObject.DEATH) {
+                if(hero.getPosY() > 2213 && hero.getPosX() > 3000)
                     switchState(GAMEWIN);
-                }
                 break;
             case GAMEOVER:
                 break;
             case GAMEWIN:
                 break;
-        }
+        }    
     }
 
     public void Render() {
@@ -232,12 +296,13 @@ public class GameWorld {
             switch(state) {
                 case INIT_GAME:
                     if(titleScreenState == 0) {
+
                         g2.setColor(Color.BLACK);
                         g2.fillRect(0, 0, GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT);
 
                         // ten game
                         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 80F));
-                        String text = "GAME PIXEL";
+                        String text = "LIGHT UP";
                         int x = getXforCenteredText(text, 80);
                         int y = 100;
 
@@ -285,7 +350,12 @@ public class GameWorld {
                         g2.fillRect(0, 0, GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT);
                         g2.setColor(Color.white);
                         g2.setFont(g2.getFont().deriveFont(42F));
-                        String text = "Hướng dẫn tân thủ:\nNhiệm vụ của bạn là: giải cứu mỹ diệu \n và tìm đường ra khỏi mê cung.\n1. Sử dụng phím mũi tên để di chuyển.\n2. Dùng nút C để tấn công.\n3. Enter để chọn các mục trên màn hình chính";
+                        String text = "Hướng dẫn tân thủ:\n" +
+                                "Nhiệm vụ của bạn là: giải cứu mỹ diệu \n" +
+                                " và tìm đường ra khỏi mê cung.\n" +
+                                "1. Sử dụng phím mũi tên để di chuyển.\n" +
+                                "2. Dùng nút C để tấn công.\n" +
+                                "3. Enter để chọn các mục trên màn hình chính";
                         int x = getXforCenteredText(text, 42f);
                         int y = 50;
                         for(String str : text.split("\n")) {
@@ -315,13 +385,33 @@ public class GameWorld {
                     TutorialRender(g2);
                     break;
                 case GAMEWIN:
+                g2.setColor(Color.white);
+                    g2.fillRect(0, 0, GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT);
+                    g2.setColor(Color.black);
+                    g2.drawString("GAME OVER!", 450, 300);
+                    break;
                 case GAMEPLAY:
-                    // backgroundMap.draw(g2);
+                {
+                    //backgroundMap.draw(g2);
                     //particularObjectManager.draw(g2);
-                    hero.draw(g2);
-                    physicalMap.draw(g2);
-                    bulletManager.draw(g2);
-                    redEyeDevil.draw(g2);
+                }
+        hero.draw(g2);
+        physicalMap.draw(g2);
+        bulletManager.draw(g2);
+        redEyeDevil1.draw(g2);
+        redEyeDevil2.draw(g2);
+        redEyeDevil3.draw(g2);
+        redEyeDevil4.draw(g2);
+        redEyeDevil5.draw(g2);
+        redEyeDevil6.draw(g2);
+        redEyeDevil7.draw(g2);
+        redEyeDevil8.draw(g2);
+        redEyeDevil9.draw(g2);
+        //backgroundMap.draw(g2);
+        if(finalBoss!=null){
+            finalBoss.draw(g2);
+        } 
+        if(hero.getPosX() > finalBossX && hero.getPosY() > finalBossY && finalbossTrigger) finalBoss.draw(g2);
 
                     g2.setColor(Color.gray);
                     g2.fillRect(19, 59, 102, 22);
@@ -348,7 +438,7 @@ public class GameWorld {
     }
 
     public BufferedImage getBufferedImage() {
-        return bufferedImage;
-    }
+        return bufferedImage;   
+     }
 
 }

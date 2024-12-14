@@ -34,6 +34,8 @@ public abstract class Human extends ParticularObject {
                 Rectangle Land = getGameWorld().physicalMap.haveCollisionWithLand(rect);
                 if(Land != null) setPosY(Land.y - getHeight() / 2);
             }
+
         }
+
     }
 }

@@ -60,25 +60,33 @@ public class Hero extends Human {
                     if(getDirection() == STAY_DIR) {
                         if (isShooting){
                             shotAnim.Update(System.nanoTime());
+
+
+
+
+
                             shotAnim.setCurrentFrame(shotAnim.getCurrentFrame());
                             shotAnim.draw((int) (getPosX() - getGameWorld().camera.getPosX()),
                                     (int) (getPosY() - getGameWorld().camera.getPosY()), g2);
                         }
                         else {
-                            idleStay.setCurrentFrame(idleStay.getCurrentFrame());
-                            idleStay.draw((int) (getPosX() - getGameWorld().camera.getPosX()),
+                            runForwardAnim.setCurrentFrame(runForwardAnim.getCurrentFrame());
+                            runForwardAnim.draw((int) (getPosX() - getGameWorld().camera.getPosX()),
                                     (int) (getPosY() - getGameWorld().camera.getPosY()), g2);
                         }
                     }
-                    else if(getDirection() == RIGHT_DIR) {
-                        runForwardAnim.setCurrentFrame(runForwardAnim.getCurrentFrame());
-                        runForwardAnim.draw((int) (getPosX() - getGameWorld().camera.getPosX()),
-                                (int) (getPosY() - getGameWorld().camera.getPosY()), g2);
-                    }
                     else if(getDirection() == LEFT_DIR) {
-                        runBackAinm.setCurrentFrame(runBackAinm.getCurrentFrame());
-                        runBackAinm.draw((int) (getPosX() - getGameWorld().camera.getPosX()),
-                                (int) (getPosY() - getGameWorld().camera.getPosY()), g2);
+                        if(isShooting){
+                            shotAnim.Update(System.nanoTime());
+                            shotAnim.setCurrentFrame(shotAnim.getCurrentFrame());
+                            shotAnim.draw((int) (getPosX() - getGameWorld().camera.getPosX()),
+                                    (int) (getPosY() - getGameWorld().camera.getPosY()), g2);
+                        }
+                        else {
+                            runBackAinm.setCurrentFrame(runBackAinm.getCurrentFrame());
+                            runBackAinm.draw((int) (getPosX() - getGameWorld().camera.getPosX()),
+                                    (int) (getPosY() - getGameWorld().camera.getPosY()), g2);
+                        }
                     }
                     else {
                         jump.setCurrentFrame(jump.getCurrentFrame());
@@ -94,7 +102,7 @@ public class Hero extends Human {
     public void attack() {
         if (!isShooting) {
             BulletNext bulletNext = new BlueFire(this.getPosX(), this.getPosY(), this.getGameWorld());
-            if (getDirection() == STAY_DIR) {
+            if ((getDirection() == STAY_DIR) || (getDirection() == RIGHT_DIR) || (getDirection() == LEFT_DIR) ) {
                 ((BulletNext)bulletNext).setSpeedX(10.0F);
                 ((BulletNext)bulletNext).setPosX(((BulletNext)bulletNext).getPosX() + 40.0F);
                 if (this.getSpeedX() != 0.0F && this.getSpeedY() == 0.0F) {
@@ -122,7 +130,7 @@ public class Hero extends Human {
 
     @Override
     public void run() {
-        System.out.println(getDirection());
+        //System.out.println(getDirection());
         if(getDirection() == LEFT_DIR) {
             setSpeedX(-3);
             setSpeedY(0);

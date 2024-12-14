@@ -1,5 +1,5 @@
 
-114
+132
 
 arrow
 image data/human/Arrow.png
@@ -342,3 +342,57 @@ image data/yurei/yureiwalk4.png
 
 yureiwalk5
 image data/yurei/yureiwalk5.png
+
+yureidead1
+image data/yurei/Dead_01.png
+
+yureidead2
+image data/yurei/Dead_02.png
+
+yureidead3
+image data/yurei/Dead_03.png
+
+yureidead4
+image data/yurei/Dead_04.png
+
+yureidead5
+image data/yurei/Dead_05.png
+
+boulder1
+image data/shaman/boulder.png
+
+boulder2
+image data/shaman/boulder.png
+
+magicshot1
+image data/shaman/magicshot.png
+
+magicshot2
+image data/shaman/magicshot.png
+
+Tile11
+image data/map/Tile11.png
+
+Tile12
+image data/map/Tile12.png
+
+Tile13
+image data/map/Tile13.png
+
+Tile14
+image data/map/Tile14.png
+
+Tile15
+image data/map/Tile15.png
+
+Tile16
+image data/map/Tile16.png
+
+Tile17
+image data/map/Tile17.png
+
+Tile18
+image data/map/Tile18.png
+
+Tile19
+image data/map/Tile19.png

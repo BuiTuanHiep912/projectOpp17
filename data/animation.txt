@@ -1,5 +1,5 @@
 
-20
+23
 
 arrow
 arrow 1000000000 arrow 1000000000
@@ -35,22 +35,28 @@ shamanAttack_1
 shamanAttack1 5000000 shamanAttack2 5000000 shamanAttack3 5000000 shamanAttack4 5000000
 
 shamanDead
-shamanDead1 5000000 shamanDead2 5000000 shamanDead3 5000000 shamanDead4 5000000 shamanDead5 5000000
+shamanDead1 800000000 shamanDead2 400000000 shamanDead3 400000000 shamanDead4 400000000 shamanDead5 999999999999999999999999999
 
 shamanHurt
 shamanHurt_01 5000000 shamanHurt_02 5000000
 
 shamanIdle
-shamanIdle_01 5000000 shamanIdle_02 5000000 shamanIdle_03 5000000 shamanIdle_04 5000000 shamanIdle_05 5000000
+shamanIdle_01 100000000 shamanIdle_02 100000000 shamanIdle_03 100000000 shamanIdle_04 100000000 shamanIdle_05 100000000
 
 shamanJump
 shamanJump_01 5000000 shamanJump_02 5000000 shamanJump_03 5000000 shamanJump_04 5000000 shamanJump_05 5000000 shamanJump_06 5000000
 
 shamanMagic_1
-shamanMagic_1_01 5000000 shamanMagic_1_02 5000000 shamanMagic_1_03 5000000 shamanMagic_1_04 5000000 shamanMagic_1_05 5000000 shamanMagic_1_06 5000000 shamanMagic_1_07 5000000 shamanMagic_1_08 5000000
+shamanMagic_1_01 250000000 shamanMagic_1_02 100000000 shamanMagic_1_03 100000000 shamanMagic_1_04 100000000 shamanMagic_1_05 100000000 shamanMagic_1_06 200000000 shamanMagic_1_07 200000000 shamanMagic_1_08 200000000
+
+boulder
+boulder1 5000000 boulder2 5000000 
 
 shamanMagic_2
-shamanMagic_2_01 5000000 shamanMagic_2_02 5000000 shamanMagic_2_03 5000000 shamanMagic_2_04 5000000 shamanMagic_2_05 5000000 shamanMagic_2_06 5000000
+shamanMagic_2_01 50000000 shamanMagic_2_02 100000000 shamanMagic_2_03 200000000 shamanMagic_2_04 250000000 shamanMagic_2_05 250000000 shamanMagic_2_06 250000000
+
+magicshot
+magicshot1 5000000 magicshot2 5000000
 
 shamanRun
 shamanRun_01 5000000 shamanRun_02 5000000 shamanRun_03 5000000 shamanRun_04 5000000 shamanRun_05 5000000 shamanRun_06 5000000
@@ -60,3 +66,6 @@ shamanWalk_01 5000000 shamanWalk_02 5000000 shamanWalk_03 5000000 shamanWalk_04 
 
 yureiwalk
 yureiwalk1 100000000 yureiwalk2 100000000 yureiwalk3 100000000 yureiwalk4 100000000 yureiwalk5 100000000
+
+yureidead
+yureidead1 100000000 yureidead2 100000000 yureidead3 100000000 yureidead4 100000000 yureidead5 99999999999999999999999999999999999
