@@ -35,7 +35,7 @@ public class ParticularObjectManager {
         }
     }
 
-    public ParticularObject getCollisionWithEnemyObject(ParticularObject object) {
+    public ParticularObject getCollisionWidthEnemyObject(ParticularObject object) {
         synchronized (particularObjects) {
             for (int id = 0; id < particularObjects.size(); id++) {
                 ParticularObject objectInList = particularObjects.get(id);

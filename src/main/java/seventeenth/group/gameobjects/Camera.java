@@ -16,11 +16,11 @@ public class Camera extends GameObject {
         this.heightView = heightView;
     }
 
-    private void lock() {
+    public void lock() {
         this.isLocked = true;
     }
 
-    private void unLock() {
+    public void unLock() {
         this.isLocked = false;
     }
 
