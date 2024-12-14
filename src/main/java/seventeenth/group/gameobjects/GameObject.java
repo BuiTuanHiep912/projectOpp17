@@ -13,6 +13,7 @@ public abstract class GameObject {
         this.gameWorld = gameWorld;
     }
 
+
     public float getPosX() {
         return posX;
     }
