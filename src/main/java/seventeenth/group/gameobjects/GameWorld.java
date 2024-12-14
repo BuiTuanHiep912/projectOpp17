@@ -18,8 +18,7 @@ public class GameWorld {
     public RedEyeDevil redEyeDevil1, redEyeDevil2, redEyeDevil3,  redEyeDevil4,  redEyeDevil5,  redEyeDevil6,  redEyeDevil7,  redEyeDevil8,  redEyeDevil9;
     public ParticularObjectManager particularObjectManager;
     public FinalBoss finalBoss;
-    //BackgroundPanel backgroundPanel = new BackgroundPanel("data/background.jpg");
-
+    public BackgroundMap backgroundMap;
 
     public static final int finalBossX = 2400;
     public static final int finalBossY = 2040;
@@ -72,6 +71,7 @@ public class GameWorld {
         particularObjectManager.addObject(hero);
 
         physicalMap = new PhysicalMap(0, 0, this);
+        backgroundMap = new BackgroundMap(0,0,this);
 
         camera = new Camera(0, 0, GameFrame.SCREEN_WIDTH,  GameFrame.SCREEN_HEIGHT, this);
 
@@ -377,7 +377,7 @@ public class GameWorld {
                     g2.drawString("PRESS ENTER TO START", 400, 300);*/
                     break;
                 case TUTORIAL:
-                    //backgroundMap.draw(g2);
+                    backgroundMap.draw(g2);
                     if(tutorialState == MEETFINALBOSS) {
                         //particularObjectManager.draw(g2);
                     }
@@ -385,10 +385,11 @@ public class GameWorld {
                     break;
                 case GAMEWIN:
                 case GAMEPLAY:
-                    // backgroundMap.draw(g2);
+                    backgroundMap.draw(g2);
                     //particularObjectManager.draw(g2);
         hero.draw(g2);
-        physicalMap.draw(g2);
+        //physicalMap.draw(g2);
+        backgroundMap.draw(g2);
         bulletManager.draw(g2);
         redEyeDevil1.draw(g2);
         redEyeDevil2.draw(g2);

@@ -44,7 +44,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     }
 
     public void RenderGame() {
-        /*
+        
         // ve lai tren 1 image
         if(bufferedImage == null) {
             bufferedImage = new BufferedImage(GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT, BufferedImage.TYPE_INT_ARGB);
@@ -56,12 +56,11 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
         if(bufferedGraphics2d != null) {
             bufferedGraphics2d.setColor(Color.white);
-            bufferedGraphics2d.fillRect(0, 0, GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT);
+            //bufferedGraphics2d.fillRect(0, 0, GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT);
 
             //draw object here
             //gameWorld.Render(bufferedGraphics2d);
-            gameWorld.Render(bufferedGraphics2d);
-        }*/
+        }
         gameWorld.Render();
     }
 

@@ -13,10 +13,12 @@ public class CacheDataLoader {
     private String frameFile = "data/frame.txt";
     private String animationFile = "data/animation.txt";
     private String physmapfile = "data/map/physicMap.txt";
+    private String backgroundmapfile = "data/map/backgroundMap.txt";
 
     private Hashtable<String, FrameImage> frameImages;
     private Hashtable<String, Animation> animations;
     private int[][] phys_map;
+    private int [][] background_map;
 
     private CacheDataLoader() {}
 
@@ -29,6 +31,7 @@ public class CacheDataLoader {
         LoadFrame();
         LoadAnimation();
         LoadPhysMap();
+        LoadBackgroundMap();
     }
 
     public int[][] getPhysicalMap() {
@@ -63,6 +66,35 @@ public class CacheDataLoader {
             System.out.println();
         }*/
 
+        br.close();
+    }
+
+    public int [][] getBackgroundMap (){
+        return instance.background_map;
+    }
+
+    public void LoadBackgroundMap() throws IOException {
+        FileReader fr  = new FileReader(backgroundmapfile);
+        BufferedReader br = new BufferedReader(fr);
+        String line = null;
+        line = br.readLine();
+        int numberOfRows = Integer.parseInt(line);
+        line = br.readLine();
+        int numberOfColumns = Integer.parseInt(line);
+        instance.background_map = new int [numberOfRows][numberOfColumns];
+        for (int i=0; i<numberOfRows; i++){
+            line = br.readLine();
+            String [] str = line.split(" ");
+            for (int j=0; j < numberOfColumns; j++){
+                instance.background_map[i][j] = Integer.parseInt(str[j]);
+            }
+        }
+        /*for (int i = 0; i< numberOfRows; i++){
+            for (int j=0; j<numberOfColumns; j++){
+            System.out.print(" " + instance.background_map[i][j]);
+            }
+            System.out.println();
+        }*/
         br.close();
     }
 
