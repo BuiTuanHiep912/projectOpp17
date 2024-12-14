@@ -111,14 +111,14 @@ public class FinalBoss extends Human {
     public void attack() {
     
         // only switch state attack
-        if (!isObjectOutOfCameraView()){
+        if (!isObjectOutOfCameraView() && getState()!=DEATH){
             if(System.currentTimeMillis() - lastAttackTime > timeAttack.get(attackType[attackIndex])){
                 lastAttackTime = System.currentTimeMillis();
                 
                 attackIndex ++;
                 if(attackIndex >= attackType.length) attackIndex = 0;
                 if(attackType[attackIndex].equals("boulderdrop")){
-                    BoulderDrop boulder = new BoulderDrop(getGameWorld().hero.getPosX(), getGameWorld().hero.getPosY() - 400, getGameWorld());
+                    BoulderDrop boulder = new BoulderDrop(getGameWorld().hero.getPosX(), getGameWorld().hero.getPosY() - 300, getGameWorld());
                     boulder.setSpeedY(6);
                     boulder.setTeamType(2);
                     getGameWorld().bulletManager.addObject(boulder);

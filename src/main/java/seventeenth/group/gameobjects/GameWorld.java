@@ -217,19 +217,19 @@ public class GameWorld {
     }
 
     public void Update() {
-        hero.update();
-        camera.Update();
-        bulletManager.UpdateObjects();
-        particularObjectManager.UpdateObjects();
-        redEyeDevil1.Update();
-        redEyeDevil2.Update();
-        redEyeDevil3.Update();
-        redEyeDevil4.Update();
-        redEyeDevil5.Update();
-        redEyeDevil6.Update();
-        redEyeDevil7.Update();
-        redEyeDevil8.Update();
-        redEyeDevil9.Update();
+        // hero.update();
+        // camera.Update();
+        // bulletManager.UpdateObjects();
+        // particularObjectManager.UpdateObjects();
+        // redEyeDevil1.Update();
+        // redEyeDevil2.Update();
+        // redEyeDevil3.Update();
+        // redEyeDevil4.Update();
+        // redEyeDevil5.Update();
+        // redEyeDevil6.Update();
+        // redEyeDevil7.Update();
+        // redEyeDevil8.Update();
+        // redEyeDevil9.Update();
         switch (state) {
             case INIT_GAME:
                 break;
@@ -240,6 +240,7 @@ public class GameWorld {
                 hero.update();
                 camera.Update();
                 bulletManager.UpdateObjects();
+                particularObjectManager.UpdateObjects();
                 redEyeDevil1.Update();
                 redEyeDevil2.Update();
                 redEyeDevil3.Update();
@@ -377,19 +378,25 @@ public class GameWorld {
                     g2.drawString("PRESS ENTER TO START", 400, 300);*/
                     break;
                 case TUTORIAL:
-                    backgroundMap.draw(g2);
+                    //backgroundMap.draw(g2);
                     if(tutorialState == MEETFINALBOSS) {
                         //particularObjectManager.draw(g2);
                     }
                     TutorialRender(g2);
                     break;
                 case GAMEWIN:
+                g2.setColor(Color.white);
+                    g2.fillRect(0, 0, GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT);
+                    g2.setColor(Color.black);
+                    g2.drawString("GAME OVER!", 450, 300);
+                    break;
                 case GAMEPLAY:
-                    backgroundMap.draw(g2);
+                {
+                    //backgroundMap.draw(g2);
                     //particularObjectManager.draw(g2);
+                }
         hero.draw(g2);
-        //physicalMap.draw(g2);
-        backgroundMap.draw(g2);
+        physicalMap.draw(g2);
         bulletManager.draw(g2);
         redEyeDevil1.draw(g2);
         redEyeDevil2.draw(g2);
@@ -400,6 +407,7 @@ public class GameWorld {
         redEyeDevil7.draw(g2);
         redEyeDevil8.draw(g2);
         redEyeDevil9.draw(g2);
+        //backgroundMap.draw(g2);
         if(finalBoss!=null){
             finalBoss.draw(g2);
         } 
