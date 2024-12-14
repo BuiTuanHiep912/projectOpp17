@@ -7,7 +7,6 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.Hashtable;
 
-// test FinalBoss : GameWorld -> Hero x=2400 y=2218
 
 public class FinalBoss extends Human {
 
@@ -24,7 +23,7 @@ public class FinalBoss extends Human {
     private long lastAttackTime;
     
     public FinalBoss(float x, float y, GameWorld gameWorld) {
-        super(x, y, 110, 150, 20, gameWorld);
+        super(x, y, 110, 150, 200, gameWorld);
         idleback = CacheDataLoader.getInstance().getAnimation("shamanIdle");
         idleforward = CacheDataLoader.getInstance().getAnimation("shamanIdle");
         idleback.flipAllImage();
@@ -38,6 +37,7 @@ public class FinalBoss extends Human {
         shootingback.flipAllImage();
         
         shamanDead = CacheDataLoader.getInstance().getAnimation("shamanDead");
+        shamanDead.flipAllImage();
         
         setTimeForNoBeHurt(1000000000);
         setDamage(10);
@@ -125,17 +125,26 @@ public class FinalBoss extends Human {
                     
                 }
                 if(attackType[attackIndex].equals("magicshot")){
-                    MagicShot magicshot = new MagicShot(this.getPosX(), this.getPosY(), this.getGameWorld());
+                    setPosY(getGameWorld().hero.getPosY());
+                    if(getGameWorld().hero.getPosY()<1750) setPosY(getGameWorld().hero.getPosY()+50);
+                    if(getGameWorld().hero.getPosY()>2250) setPosY(getGameWorld().hero.getPosY()-50);
+                    MagicShot magicshot1 = new MagicShot(this.getPosX(), this.getPosY()+50, this.getGameWorld());
+                    MagicShot magicshot2 = new MagicShot(this.getPosX(), this.getPosY(), this.getGameWorld());
+                    MagicShot magicshot3 = new MagicShot(this.getPosX(), this.getPosY()-50, this.getGameWorld());
                 if (getDirection() == LEFT_DIR) {
-                    (magicshot).setSpeedX(-10.0F);
-                    (magicshot).setPosX((magicshot).getPosX() + 40.0F);
-                    if (this.getSpeedX() != 0.0F && this.getSpeedY() == 0.0F) {
-                        (magicshot).setPosX((magicshot).getPosX() + 10.0F);
-                        (magicshot).setPosY((magicshot).getPosY() + 5.0F);
-                    }
+                    (magicshot1).setSpeedX(-10.0F);
+                    (magicshot1).setPosX((magicshot1).getPosX() + 40.0F);
+                    (magicshot2).setSpeedX(-10.0F);
+                    (magicshot2).setPosX((magicshot2).getPosX() + 40.0F);
+                    (magicshot3).setSpeedX(-10.0F);
+                    (magicshot3).setPosX((magicshot3).getPosX() + 40.0F);
                 }
-                (magicshot).setTeamType(getTeamType());
-                this.getGameWorld().bulletManager.addObject(magicshot);
+                (magicshot1).setTeamType(getTeamType());
+                (magicshot2).setTeamType(getTeamType());
+                (magicshot3).setTeamType(getTeamType());
+                this.getGameWorld().bulletManager.addObject(magicshot1);
+                this.getGameWorld().bulletManager.addObject(magicshot2);
+                this.getGameWorld().bulletManager.addObject(magicshot3);
                 }
                 
             }
@@ -189,11 +198,11 @@ public class FinalBoss extends Human {
             else if(attackType[attackIndex].equals("magicshot")){
                 if(getSpeedX() > 0){
                     shootingforward.Update(System.nanoTime());
-                    shootingforward.draw((int) (getPosX() - getGameWorld().camera.getPosX()), (int) getPosY() - (int) getGameWorld().camera.getPosY() + 50, g2);
+                    shootingforward.draw((int) (getPosX() - getGameWorld().camera.getPosX()), (int) getPosY() - (int) getGameWorld().camera.getPosY(), g2);
                 }
                 else{
                     shootingback.Update(System.nanoTime());
-                    shootingback.draw((int) (getPosX() - getGameWorld().camera.getPosX()), (int) getPosY() - (int) getGameWorld().camera.getPosY() + 50, g2);
+                    shootingback.draw((int) (getPosX() - getGameWorld().camera.getPosX()), (int) getPosY() - (int) getGameWorld().camera.getPosY(), g2);
                 }
             }
         }

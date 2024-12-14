@@ -249,6 +249,7 @@ public class GameWorld {
                 redEyeDevil7.Update();
                 redEyeDevil8.Update();
                 redEyeDevil9.Update();
+                if(finalBoss!=null) finalBoss.Update();
                 if(hero.getPosX() > finalBossX && hero.getPosY() > finalBossY && finalbossTrigger){
                     finalbossTrigger = false;
                     switchState(TUTORIAL);
@@ -260,7 +261,7 @@ public class GameWorld {
                     finalBoss.setTeamType(ParticularObject.ENEMY_TEAM);
                     finalBoss.setDirection(ParticularObject.LEFT_DIR);
                     particularObjectManager.addObject(finalBoss);
-                    finalBoss.Update();
+                    switchState(GAMEPLAY);
 
                 }
 
@@ -276,9 +277,8 @@ public class GameWorld {
                         switchState(GAMEOVER);
                     }
                 }
-                if(!finalbossTrigger && finalBoss.getState() == ParticularObject.DEATH) {
+                if(hero.getPosY() > 2213 && hero.getPosX() > 3000)
                     switchState(GAMEWIN);
-                }
                 break;
             case GAMEOVER:
                 break;
@@ -400,6 +400,9 @@ public class GameWorld {
         redEyeDevil7.draw(g2);
         redEyeDevil8.draw(g2);
         redEyeDevil9.draw(g2);
+        if(finalBoss!=null){
+            finalBoss.draw(g2);
+        } 
         if(hero.getPosX() > finalBossX && hero.getPosY() > finalBossY && finalbossTrigger) finalBoss.draw(g2);
 
                     g2.setColor(Color.gray);
