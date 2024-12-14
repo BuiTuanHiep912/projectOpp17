@@ -11,7 +11,7 @@ public class GameWorld {
     public PhysicalMap physicalMap;
     public BulletManager bulletManager;
     public Camera camera;
-    public RedEyeDevil redEyeDevil;
+    public RedEyeDevil redEye1,  redEye2;
     public FinalBoss finalBoss;
 
     public GameWorld() {
@@ -25,9 +25,13 @@ public class GameWorld {
 
         camera = new Camera(0, 0, GameFrame.SCREEN_WIDTH,  GameFrame.SCREEN_HEIGHT, this);
 
-        redEyeDevil = new RedEyeDevil(300, 470, this);
-        redEyeDevil.setTeamType(ParticularObject.ENEMY_TEAM);
-        particularObjectManager.addObject(redEyeDevil);
+        redEye1 = new RedEyeDevil(300, 470, this);
+        redEye1.setTeamType(ParticularObject.ENEMY_TEAM);
+        particularObjectManager.addObject(redEye1);
+
+        redEye2 = new RedEyeDevil(400, 470, this);
+        redEye2.setTeamType(ParticularObject.ENEMY_TEAM);
+        particularObjectManager.addObject(redEye2);
 
         finalBoss = new FinalBoss(2874, 2218, this);
         finalBoss.setTeamType(ParticularObject.ENEMY_TEAM);
@@ -39,7 +43,8 @@ public class GameWorld {
         camera.Update();
         bulletManager.UpdateObjects();
         particularObjectManager.UpdateObjects();
-        redEyeDevil.Update();
+        redEye1.Update();
+        redEye2.Update();
         finalBoss.Update();
     }
 
@@ -47,7 +52,8 @@ public class GameWorld {
         hero.draw(g2);
         physicalMap.draw(g2);
         bulletManager.draw(g2);
-        redEyeDevil.draw(g2);
+        redEye1.draw(g2);
+        redEye2.draw(g2);
         finalBoss.draw(g2);
     }
 
