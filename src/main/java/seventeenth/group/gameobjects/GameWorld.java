@@ -17,6 +17,7 @@ public class GameWorld {
     public Camera camera;
     public RedEyeDevil redEyeDevil;
     public ParticularObjectManager particularObjectManager;
+    public FinalBoss finalBoss;
     //BackgroundPanel backgroundPanel = new BackgroundPanel("data/background.jpg");
 
 
@@ -51,7 +52,6 @@ public class GameWorld {
     public int titleScreenState = 0;
 
 
-
     public GameWorld() {
         texts1[0] = "We are heros, and our mission is protecting our Home\nEarth....";
         texts1[1] = "There was a Monster from University on Earth in 10 years\n"
@@ -63,13 +63,23 @@ public class GameWorld {
         particularObjectManager = new ParticularObjectManager(this);
 
         bufferedImage = new BufferedImage(GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT, BufferedImage.TYPE_INT_ARGB);
-        hero = new Hero(70, 470,this);
-        physicalMap = new PhysicalMap(0, 0, this);
-        camera = new Camera(0, 0, GameFrame.SCREEN_WIDTH,  GameFrame.SCREEN_HEIGHT, this);
+        
         bulletManager = new BulletManager(this);
-        redEyeDevil = new RedEyeDevil(1000, 470, this);
+        // test FinalBoss : x=2400 y=2218
+        hero = new Hero(70, 470,this);
+        particularObjectManager.addObject(hero);
 
+        physicalMap = new PhysicalMap(0, 0, this);
 
+        camera = new Camera(0, 0, GameFrame.SCREEN_WIDTH,  GameFrame.SCREEN_HEIGHT, this);
+
+        redEyeDevil = new RedEyeDevil(300, 470, this);
+        redEyeDevil.setTeamType(ParticularObject.ENEMY_TEAM);
+        particularObjectManager.addObject(redEyeDevil);
+
+        finalBoss = new FinalBoss(2874, 2218, this);
+        finalBoss.setTeamType(ParticularObject.ENEMY_TEAM);
+        particularObjectManager.addObject(finalBoss);
     }
 
 
@@ -185,7 +195,9 @@ public class GameWorld {
         hero.update();
         camera.Update();
         bulletManager.UpdateObjects();
+        particularObjectManager.UpdateObjects();
         redEyeDevil.Update();
+        finalBoss.Update();
         switch (state) {
             case INIT_GAME:
                 break;
@@ -232,7 +244,7 @@ public class GameWorld {
                 break;
             case GAMEWIN:
                 break;
-        }
+        }    
     }
 
     public void Render() {
@@ -335,10 +347,11 @@ public class GameWorld {
                 case GAMEPLAY:
                     // backgroundMap.draw(g2);
                     //particularObjectManager.draw(g2);
-                    hero.draw(g2);
-                    physicalMap.draw(g2);
-                    bulletManager.draw(g2);
-                    redEyeDevil.draw(g2);
+        hero.draw(g2);
+        physicalMap.draw(g2);
+        bulletManager.draw(g2);
+        redEyeDevil.draw(g2);
+        finalBoss.draw(g2);
 
                     g2.setColor(Color.gray);
                     g2.fillRect(19, 59, 102, 22);
@@ -365,7 +378,7 @@ public class GameWorld {
     }
 
     public BufferedImage getBufferedImage() {
-        return bufferedImage;
-    }
+        return bufferedImage;   
+     }
 
 }
