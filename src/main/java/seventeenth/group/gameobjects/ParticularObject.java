@@ -48,6 +48,7 @@ public abstract class ParticularObject extends GameObject{
         direction = STAY_DIR;
     }
 
+
     public int getState() {
         return state;
     }
@@ -161,25 +162,43 @@ public abstract class ParticularObject extends GameObject{
     public void Update() {
         switch(state) {
             case ALIVE:
-                // hehe
+                /*
+                if (getGameWorld() == null) {
+                    System.out.println("GameWorld is null! Skipping collision check.");
+                    break;
+                }
+
+                if (getGameWorld().particularObjectManager == null) {
+                    System.out.println("particularObjectManager is null! Skipping collision check.");
+                    break;
+                }
+
+                // Logic xử lý va chạm
+                ParticularObject object = getGameWorld().particularObjectManager.getCollisionWithEnemyObject(this);
+                if (object != null && object.getDamage() > 0) {
+                    System.out.println("Collision detected with enemy object: " + object);
+                    beHurt(object.getDamage());
+                } else {
+                    System.out.println("No collision detected.");
+                }
+
+                 */
+                // note: SET DAMAGE FOR OBJECT NO DAMAGE
                 ParticularObject object = getGameWorld().particularObjectManager.getCollisionWithEnemyObject(this);
                 if(object!=null){
-                    
-                    
-                    if(object.getDamage() > 0){
 
+                    if(object.getDamage() > 0){
                         // switch state to fey if object die
-                        
-                        
-                        // System.out.println("eat damage.... from collision with enemy........ "+object.getDamage());
+
+                        //System.out.println("eat damage.... from collision with enemy........ "+object.getDamage());
                         beHurt(object.getDamage());
                     }
-                    
+
                 }
-                
-                
+
                 
                 break;
+
             case BEHURT:
                 if(behurtBackAnim == null) {
                     state = NOBEHURT;
@@ -215,7 +234,7 @@ public abstract class ParticularObject extends GameObject{
 
         }
     }
-
+    /*
     public void drawBoundForCollisionWithMap(Graphics2D g2){
         Rectangle rect = getBoundForCollisionWithMap();
         g2.setColor(Color.BLUE);
@@ -228,7 +247,7 @@ public abstract class ParticularObject extends GameObject{
         g2.setColor(Color.RED);
         g2.drawRect(rect.x - (int) getGameWorld().camera.getPosX(), rect.y - (int) getGameWorld().camera.getPosY(), rect.width, rect.height);
         //g2.drawRect(rect.x, rect.y, rect.width, rect.height);
-    }
+    }*/
 
     public abstract Rectangle getBoundForCollisionWithEnemy();
 

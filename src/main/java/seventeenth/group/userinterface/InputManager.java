@@ -20,45 +20,102 @@ public class InputManager {
 
     public void processKeyPressed(int keyCode) {
 
-        if(keyCode == KeyEvent.VK_UP) {
-            //gamePanel.gameWorld.hero.setDirection(Hero.DIR_LEFT);
-            gameWorld.hero.setDirection(gameWorld.hero.UP_DIR);
-            gameWorld.hero.run();
+        //title state
+        if(gameWorld.state == GameWorld.INIT_GAME) {
+            if(gameWorld.getTitleScreenState() == 0) {
+                if(keyCode == KeyEvent.VK_UP) {
+                    gameWorld.addOrsub(-1);
+                    if(gameWorld.getCommandNum() < 0){
+                        gameWorld.setCommandNum(2);
+                    }
+                }
+                else if(keyCode == KeyEvent.VK_DOWN) {
+                    gameWorld.addOrsub(1);
+                    if(gameWorld.getCommandNum() > 2){
+                        gameWorld.setCommandNum(0);
+                    }
+                }
+
+                if(keyCode == KeyEvent.VK_ENTER) {
+                    if(gameWorld.getCommandNum() == 0) {
+                        gameWorld.switchState(GameWorld.GAMEPLAY);
+                    }
+                    if(gameWorld.getCommandNum() == 1) {
+                        gameWorld.setTitleScreenState(1);
+                    }
+                    if(gameWorld.getCommandNum() == 2) {
+                        System.exit(0);
+                    }
+                }
+            }
+            else if(gameWorld.getTitleScreenState() == 1) {
+                if(keyCode == KeyEvent.VK_ENTER) {
+                    if(gameWorld.getCommandNum() == 0) {
+                        gameWorld.setTitleScreenState(0);
+                    }
+                }
+            }
         }
-        else if(keyCode == KeyEvent.VK_DOWN) {
-            //gameWorld.physicalMap.setSy += 5;
-            gameWorld.hero.setDirection(gameWorld.hero.DOWN_DIR);
-            gameWorld.hero.run();
+        // play state
+        if(gameWorld.state != GameWorld.INIT_GAME){
+            if(keyCode == KeyEvent.VK_UP) {
+                //gamePanel.gameWorld.hero.setDirection(Hero.DIR_LEFT);
+                gameWorld.hero.setDirection(gameWorld.hero.UP_DIR);
+                gameWorld.hero.run();
+            }
+            else if(keyCode == KeyEvent.VK_DOWN) {
+                //gameWorld.physicalMap.setSy += 5;
+                gameWorld.hero.setDirection(gameWorld.hero.DOWN_DIR);
+                gameWorld.hero.run();
+            }
+            else if(keyCode == KeyEvent.VK_LEFT) {
+                //gamePanel.physicalMap.x -= 5;
+                gameWorld.hero.setDirection(gameWorld.hero.LEFT_DIR);
+                gameWorld.hero.run();
+            }
+            else if(keyCode == KeyEvent.VK_RIGHT) {
+                //gamePanel.physicalMap.x += 5;
+                gameWorld.hero.setDirection(gameWorld.hero.RIGHT_DIR);
+                gameWorld.hero.run();
+            }
+            else if(keyCode == KeyEvent.VK_ENTER) {
+                System.out.println("hehe" + gameWorld.state);
+                if(gameWorld.state == GameWorld.GAMEPLAY) {
+                    if(gameWorld.previousState == GameWorld.GAMEPLAY) {
+                        gameWorld.switchState(GameWorld.GAMEPLAY);
+                    }
+                    else {
+                        gameWorld.switchState(GameWorld.TUTORIAL);
+                    }
+                }
+                if(gameWorld.state == GameWorld.TUTORIAL && gameWorld.storyTutorial >= 1) {
+                    if(gameWorld.storyTutorial <= 3) {
+                        gameWorld.storyTutorial++;
+                        gameWorld.currentSize = 1;
+                        gameWorld.textTutorial = gameWorld.texts1[gameWorld.storyTutorial-1];
+                    }
+                    else {
+                        gameWorld.switchState(GameWorld.GAMEPLAY);
+                    }
+
+                    if(gameWorld.tutorialState == GameWorld.MEETFINALBOSS) {
+                        gameWorld.switchState(GameWorld.GAMEPLAY);
+                    }
+                }
+                System.out.println("You press ENTER");
+            }
+            else if(keyCode == KeyEvent.VK_SPACE) {
+                System.out.println("You press SPACE");
+            }
+            else if(keyCode == KeyEvent.VK_C) {
+                gameWorld.hero.attack();
+                System.out.println("You press C");
+            }
         }
-        else if(keyCode == KeyEvent.VK_LEFT) {
-            //gamePanel.physicalMap.x -= 5;
-            gameWorld.hero.setDirection(gameWorld.hero.LEFT_DIR);
-            gameWorld.hero.run();
-        }
-        else if(keyCode == KeyEvent.VK_RIGHT) {
-            //gamePanel.physicalMap.x += 5;
-            gameWorld.hero.setDirection(gameWorld.hero.RIGHT_DIR);
-            gameWorld.hero.run();
-        }
-        /*else if(keyCode == KeyEvent.VK_A) {
-            gameWorld.hero.setDirection(gameWorld.hero.SHOOTLEFT_DIR);
-            gameWorld.hero.run();
-        }
-        else if(keyCode == KeyEvent.VK_D){
-            gameWorld.hero.setDirection(gameWorld.hero.SHOOTRIGHT_DIR);
-            gameWorld.hero.run();
-        }*/
-        else if(keyCode == KeyEvent.VK_ENTER) {
-            System.out.println("You press ENTER");
-        }
-        else if(keyCode == KeyEvent.VK_SPACE) {
-            System.out.println("You press SPACE");
-        }
-        else if(keyCode == KeyEvent.VK_C) {
-            gameWorld.hero.attack();
-            //System.out.println("You press C");
-        }
+
     }
+
+
 
 
 

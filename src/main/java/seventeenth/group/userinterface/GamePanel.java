@@ -31,18 +31,21 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     public GamePanel() {
         gameWorld = new GameWorld();
         inputManager = new InputManager(gameWorld);
-        bufferedImage = new BufferedImage(GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT, BufferedImage.TYPE_INT_ARGB);
+        //bufferedImage = new BufferedImage(GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT, BufferedImage.TYPE_INT_ARGB);
+
     }
 
     public void paint(Graphics g) {
-        g.drawImage(bufferedImage, 0, 0, this);
+        g.drawImage(gameWorld.getBufferedImage(), 0, 0, this);
     }
 
     public void UpdateGame() {
         gameWorld.Update();
     }
 
-    public void RenderGame() { // ve lai tren 1 image
+    public void RenderGame() {
+        /*
+        // ve lai tren 1 image
         if(bufferedImage == null) {
             bufferedImage = new BufferedImage(GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT, BufferedImage.TYPE_INT_ARGB);
         }
@@ -58,7 +61,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             //draw object here
             //gameWorld.Render(bufferedGraphics2d);
             gameWorld.Render(bufferedGraphics2d);
-        }
+        }*/
+        gameWorld.Render();
     }
 
     public void startGame() {

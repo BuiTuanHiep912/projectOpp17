@@ -1,6 +1,7 @@
 package seventeenth.group.userinterface;
 
 import seventeenth.group.effect.CacheDataLoader;
+import seventeenth.group.gameobjects.GameWorld;
 
 import javax.swing.JFrame;
 import java.awt.*;
@@ -12,6 +13,7 @@ public class GameFrame extends JFrame {
     public static final int SCREEN_HEIGHT = 600;
 
     GamePanel gamePanel;
+    private BackgroundPanel backgroundPanel;
 
     public GameFrame() {
         Toolkit toolkit = this.getToolkit();
@@ -30,8 +32,12 @@ public class GameFrame extends JFrame {
         gamePanel = new GamePanel();
         add(gamePanel);
 
+
+
         this.addKeyListener(gamePanel);
     }
+
+
 
     public void startGame() {
         gamePanel.startGame();
