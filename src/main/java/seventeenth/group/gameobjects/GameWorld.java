@@ -15,13 +15,15 @@ public class GameWorld {
     public PhysicalMap physicalMap;
     public BulletManager bulletManager;
     public Camera camera;
-    public RedEyeDevil redEyeDevil;
+    public RedEyeDevil redEyeDevil1, redEyeDevil2, redEyeDevil3,  redEyeDevil4,  redEyeDevil5,  redEyeDevil6,  redEyeDevil7,  redEyeDevil8,  redEyeDevil9;
     public ParticularObjectManager particularObjectManager;
     public FinalBoss finalBoss;
     //BackgroundPanel backgroundPanel = new BackgroundPanel("data/background.jpg");
 
 
-    public static final int finalBossX = 3600;
+    public static final int finalBossX = 2400;
+    public static final int finalBossY = 2040;
+
 
     public static final int INIT_GAME = 0;
     public static final int TUTORIAL = 1;
@@ -44,7 +46,7 @@ public class GameWorld {
     public int currentSize = 1;
 
     private boolean finalbossTrigger = true;
-    ParticularObject boss;
+    // ParticularObject boss;
 
     private int numberOfLife = 3;
 
@@ -63,9 +65,9 @@ public class GameWorld {
         particularObjectManager = new ParticularObjectManager(this);
 
         bufferedImage = new BufferedImage(GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT, BufferedImage.TYPE_INT_ARGB);
-        
+
         bulletManager = new BulletManager(this);
-        // test FinalBoss : x=2400 y=2218
+ //2380 2030
         hero = new Hero(70, 470,this);
         particularObjectManager.addObject(hero);
 
@@ -73,13 +75,36 @@ public class GameWorld {
 
         camera = new Camera(0, 0, GameFrame.SCREEN_WIDTH,  GameFrame.SCREEN_HEIGHT, this);
 
-        redEyeDevil = new RedEyeDevil(300, 470, this);
-        redEyeDevil.setTeamType(ParticularObject.ENEMY_TEAM);
-        particularObjectManager.addObject(redEyeDevil);
+        redEyeDevil1 = new RedEyeDevil(650, 430, this);
+        redEyeDevil2 = new RedEyeDevil(1011, 2260, this);
+        redEyeDevil3 = new RedEyeDevil(1167, 186, this);
+        redEyeDevil4 = new RedEyeDevil(1936, 154, this);
+        redEyeDevil5 = new RedEyeDevil(1250, 685, this);
+        redEyeDevil6 = new RedEyeDevil(1555, 988, this);
+        redEyeDevil7 = new RedEyeDevil(1170, 1490, this);
+        redEyeDevil8 = new RedEyeDevil(2260, 696, this);
+        redEyeDevil9 = new RedEyeDevil(2402, 1242, this);
 
-        finalBoss = new FinalBoss(2874, 2218, this);
-        finalBoss.setTeamType(ParticularObject.ENEMY_TEAM);
-        particularObjectManager.addObject(finalBoss);
+        redEyeDevil1.setTeamType(ParticularObject.ENEMY_TEAM);
+        redEyeDevil2.setTeamType(ParticularObject.ENEMY_TEAM);
+        redEyeDevil3.setTeamType(ParticularObject.ENEMY_TEAM);
+        redEyeDevil4.setTeamType(ParticularObject.ENEMY_TEAM);
+        redEyeDevil5.setTeamType(ParticularObject.ENEMY_TEAM);
+        redEyeDevil6.setTeamType(ParticularObject.ENEMY_TEAM);
+        redEyeDevil7.setTeamType(ParticularObject.ENEMY_TEAM);
+        redEyeDevil8.setTeamType(ParticularObject.ENEMY_TEAM);
+        redEyeDevil9.setTeamType(ParticularObject.ENEMY_TEAM);
+
+        particularObjectManager.addObject(redEyeDevil1);
+        particularObjectManager.addObject(redEyeDevil2);
+        particularObjectManager.addObject(redEyeDevil3);
+        particularObjectManager.addObject(redEyeDevil4);
+        particularObjectManager.addObject(redEyeDevil5);
+        particularObjectManager.addObject(redEyeDevil6);
+        particularObjectManager.addObject(redEyeDevil7);
+        particularObjectManager.addObject(redEyeDevil8);
+        particularObjectManager.addObject(redEyeDevil9);
+
     }
 
 
@@ -196,8 +221,15 @@ public class GameWorld {
         camera.Update();
         bulletManager.UpdateObjects();
         particularObjectManager.UpdateObjects();
-        redEyeDevil.Update();
-        finalBoss.Update();
+        redEyeDevil1.Update();
+        redEyeDevil2.Update();
+        redEyeDevil3.Update();
+        redEyeDevil4.Update();
+        redEyeDevil5.Update();
+        redEyeDevil6.Update();
+        redEyeDevil7.Update();
+        redEyeDevil8.Update();
+        redEyeDevil9.Update();
         switch (state) {
             case INIT_GAME:
                 break;
@@ -208,26 +240,34 @@ public class GameWorld {
                 hero.update();
                 camera.Update();
                 bulletManager.UpdateObjects();
-                redEyeDevil.Update();
-
-                if(hero.getPosX() > finalBossX && finalbossTrigger){
+                redEyeDevil1.Update();
+                redEyeDevil2.Update();
+                redEyeDevil3.Update();
+                redEyeDevil4.Update();
+                redEyeDevil5.Update();
+                redEyeDevil6.Update();
+                redEyeDevil7.Update();
+                redEyeDevil8.Update();
+                redEyeDevil9.Update();
+                if(hero.getPosX() > finalBossX && hero.getPosY() > finalBossY && finalbossTrigger){
                     finalbossTrigger = false;
                     switchState(TUTORIAL);
                     tutorialState = MEETFINALBOSS;
                     storyTutorial = 0;
                     openIntroGameY = 550;
 
-                    boss = new FinalBoss(finalBossX + 700, 460, this);
-                    boss.setTeamType(ParticularObject.ENEMY_TEAM);
-                    boss.setDirection(ParticularObject.LEFT_DIR);
-                    particularObjectManager.addObject(boss);
+                    finalBoss = new FinalBoss(2874, 2218, this);                   
+                    finalBoss.setTeamType(ParticularObject.ENEMY_TEAM);
+                    finalBoss.setDirection(ParticularObject.LEFT_DIR);
+                    particularObjectManager.addObject(finalBoss);
+                    finalBoss.Update();
 
                 }
 
                 if(hero.getState() == ParticularObject.DEATH) {
                     numberOfLife--;
                     if(numberOfLife >= 0) {
-                        hero.setBlood(100);
+                        hero.setBlood(10);
                         hero.setPosY(hero.getPosY() - 50);
                         hero.setState(ParticularObject.NOBEHURT);
                         particularObjectManager.addObject(hero);
@@ -236,7 +276,7 @@ public class GameWorld {
                         switchState(GAMEOVER);
                     }
                 }
-                if(!finalbossTrigger && boss.getState() == ParticularObject.DEATH) {
+                if(!finalbossTrigger && finalBoss.getState() == ParticularObject.DEATH) {
                     switchState(GAMEWIN);
                 }
                 break;
@@ -350,8 +390,16 @@ public class GameWorld {
         hero.draw(g2);
         physicalMap.draw(g2);
         bulletManager.draw(g2);
-        redEyeDevil.draw(g2);
-        finalBoss.draw(g2);
+        redEyeDevil1.draw(g2);
+        redEyeDevil2.draw(g2);
+        redEyeDevil3.draw(g2);
+        redEyeDevil4.draw(g2);
+        redEyeDevil5.draw(g2);
+        redEyeDevil6.draw(g2);
+        redEyeDevil7.draw(g2);
+        redEyeDevil8.draw(g2);
+        redEyeDevil9.draw(g2);
+        if(hero.getPosX() > finalBossX && hero.getPosY() > finalBossY && finalbossTrigger) finalBoss.draw(g2);
 
                     g2.setColor(Color.gray);
                     g2.fillRect(19, 59, 102, 22);

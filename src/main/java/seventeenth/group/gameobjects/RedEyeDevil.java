@@ -23,8 +23,8 @@ public class RedEyeDevil extends ParticularObject {
         deathAnim = CacheDataLoader.getInstance().getAnimation("yureidead");
         startTimeToShoot = 0;
         setTimeForNoBeHurt(1000000000);   
-        x1 = x - 100;
-        x2 = x + 100;
+        x1 = x - 150;
+        x2 = x + 150;
         setSpeedX(1);
         setDamage(10);
     }
