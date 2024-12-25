@@ -1,6 +1,7 @@
 package seventeenth.group.userinterface;
 
 import seventeenth.group.effect.*;
+import seventeenth.group.gameobjects.BackgroundMap;
 import seventeenth.group.gameobjects.GameWorld;
 import seventeenth.group.gameobjects.Hero;
 import seventeenth.group.gameobjects.PhysicalMap;
@@ -23,6 +24,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     private InputManager inputManager;
 
+    //public BackgroundMap backgroundMap;
+
     BufferedImage bufferedImage;
     Graphics2D bufferedGraphics2d;
 
@@ -32,7 +35,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         gameWorld = new GameWorld();
         inputManager = new InputManager(gameWorld);
         //bufferedImage = new BufferedImage(GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT, BufferedImage.TYPE_INT_ARGB);
-
+        //backgroundMap = new BackgroundMap(0,0,gameWorld);
     }
 
     public void paint(Graphics g) {
@@ -44,23 +47,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     }
 
     public void RenderGame() {
-        
-        // ve lai tren 1 image
-        if(bufferedImage == null) {
-            bufferedImage = new BufferedImage(GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT, BufferedImage.TYPE_INT_ARGB);
-        }
-
-        if(bufferedImage != null) {
-            bufferedGraphics2d = (Graphics2D) bufferedImage.getGraphics();
-        }
-
-        if(bufferedGraphics2d != null) {
-            bufferedGraphics2d.setColor(Color.white);
-            //bufferedGraphics2d.fillRect(0, 0, GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT);
-
-            //draw object here
-            //gameWorld.Render(bufferedGraphics2d);
-        }
         gameWorld.Render();
     }
 
@@ -74,7 +60,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     public void run() {
 
-        long FPS = 60;
+        long FPS = 80;
         long period = 1000 * 1000000 / FPS; // nano second
         long beginTime;
         long sleepTime;

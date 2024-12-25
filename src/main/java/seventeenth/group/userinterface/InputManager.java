@@ -21,7 +21,7 @@ public class InputManager {
     public void processKeyPressed(int keyCode) {
 
         //title state
-        if(gameWorld.state == GameWorld.INIT_GAME) {
+        /*if(gameWorld.state == GameWorld.INIT_GAME) {
             if(gameWorld.getTitleScreenState() == 0) {
                 if(keyCode == KeyEvent.VK_UP) {
                     gameWorld.addOrsub(-1);
@@ -36,7 +36,7 @@ public class InputManager {
                     }
                 }
 
-                if(keyCode == KeyEvent.VK_ENTER) {
+                else  if(keyCode == KeyEvent.VK_ENTER) {
                     if(gameWorld.getCommandNum() == 0) {
                         gameWorld.switchState(GameWorld.GAMEPLAY);
                     }
@@ -55,9 +55,9 @@ public class InputManager {
                     }
                 }
             }
-        }
+        }*/
         // play state
-        if(gameWorld.state != GameWorld.INIT_GAME){
+        /*if(gameWorld.state != GameWorld.INIT_GAME){
             if(keyCode == KeyEvent.VK_UP) {
                 //gamePanel.gameWorld.hero.setDirection(Hero.DIR_LEFT);
                 gameWorld.hero.setDirection(gameWorld.hero.UP_DIR);
@@ -103,6 +103,26 @@ public class InputManager {
                     }
                 }
                 System.out.println("You press ENTER");
+            }*/
+            if(keyCode == KeyEvent.VK_UP) {
+                //gamePanel.gameWorld.hero.setDirection(Hero.DIR_LEFT);
+                gameWorld.hero.setDirection(gameWorld.hero.UP_DIR);
+                gameWorld.hero.run();
+            }
+            else if(keyCode == KeyEvent.VK_DOWN) {
+                //gameWorld.physicalMap.setSy += 5;
+                gameWorld.hero.setDirection(gameWorld.hero.DOWN_DIR);
+                gameWorld.hero.run();
+            }
+            else if(keyCode == KeyEvent.VK_LEFT) {
+                //gamePanel.physicalMap.x -= 5;
+                gameWorld.hero.setDirection(gameWorld.hero.LEFT_DIR);
+                gameWorld.hero.run();
+            }
+            else if(keyCode == KeyEvent.VK_RIGHT) {
+                //gamePanel.physicalMap.x += 5;
+                gameWorld.hero.setDirection(gameWorld.hero.RIGHT_DIR);
+                gameWorld.hero.run();
             }
             else if(keyCode == KeyEvent.VK_SPACE) {
                 System.out.println("You press SPACE");
@@ -111,7 +131,7 @@ public class InputManager {
                 gameWorld.hero.attack();
                 System.out.println("You press C");
             }
-        }
+        //}
 
     }
 
@@ -134,9 +154,6 @@ public class InputManager {
             gameWorld.hero.stopRun();
         }
         //System.out.println("You released " + KeyEvent.getKeyText(keyCode));
-        else if(keyCode == KeyEvent.VK_ENTER) {
-            System.out.println("You released ENTER");
-        }
         else if(keyCode == KeyEvent.VK_SPACE) {
             System.out.println("You released SPACE");
         }

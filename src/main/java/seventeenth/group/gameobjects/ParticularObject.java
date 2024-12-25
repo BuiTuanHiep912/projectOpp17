@@ -184,7 +184,7 @@ public abstract class ParticularObject extends GameObject{
 
                  */
                 // note: SET DAMAGE FOR OBJECT NO DAMAGE
-                ParticularObject object = getGameWorld().particularObjectManager.getCollisionWithEnemyObject(this);
+                ParticularObject object = getGameWorld().particularObjectManager.getCollisionWidthEnemyObject(this);
                 if(object!=null){
 
                     if(object.getDamage() > 0){

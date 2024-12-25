@@ -4,7 +4,9 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.image.BufferedImageFilter;
 import java.io.*;
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Map;
 
 public class CacheDataLoader {
 
@@ -15,10 +17,12 @@ public class CacheDataLoader {
     private String physmapfile = "data/map/physicMap.txt";
     private String backgroundmapfile = "data/map/backgroundMap.txt";
 
-    private Hashtable<String, FrameImage> frameImages;
-    private Hashtable<String, Animation> animations;
+    private Map<String, FrameImage> frameImages;
+    private Map<String, Animation> animations;
+    private Map<String, BufferedImage> imageCache = new HashMap<>();
+
     private int[][] phys_map;
-    private int [][] background_map;
+    private int[][] background_map;
 
     private CacheDataLoader() {}
 
@@ -26,6 +30,17 @@ public class CacheDataLoader {
         if(instance == null) instance = new CacheDataLoader();
         return instance;
     }
+    public BufferedImage loadImage(String path) throws IOException {
+        if (imageCache.containsKey(path)) {
+            return imageCache.get(path); // Trả về ảnh đã được cache
+        }
+
+        BufferedImage image = ImageIO.read(new File(path));
+        imageCache.put(path, image); // Lưu vào cache
+        return image;
+    }
+
+
 
     public void LoadData() throws IOException {
         LoadFrame();
@@ -96,51 +111,48 @@ public class CacheDataLoader {
             System.out.println();
         }*/
         br.close();
+
     }
 
     public void LoadFrame() throws IOException {
-        frameImages = new Hashtable<String, FrameImage>();
+        frameImages = new HashMap<>(); // Sử dụng HashMap thay vì Hashtable
 
         FileReader fr = new FileReader(frameFile);
-        BufferedReader br = new BufferedReader(fr); // bo doc
+        BufferedReader br = new BufferedReader(fr);
 
-        String line = null;  // dung de doc tung dong trong file
-
-        if(br.readLine() == null) {
-            System.out.println("No data");
-            throw new IOException();
+        String line = null;
+        if ((line = br.readLine()) == null) {
+            System.out.println("No data in frame file.");
+            throw new IOException("Frame file is empty or not found.");
         }
-        else {
 
-            // dua con tro doc file ve dau file
-            fr = new FileReader(frameFile);
-            br = new BufferedReader(fr);
+        // Tiếp tục xử lý các dòng khác
+        while ((line = br.readLine()).equals(""));
+        int n = Integer.parseInt(line);
+        for (int i = 0; i < n; i++) {
+            FrameImage frame = new FrameImage();
+            while ((line = br.readLine()).equals(""));
+            frame.setName(line);
+            while ((line = br.readLine()).equals(""));
+            String[] str = line.split(" ");
+            String path = str[1];
 
-            while((line = br.readLine()).equals(""));
-
-            int n = Integer.parseInt(line);
-
-            for(int i = 0; i < n; i++) {
-
-                FrameImage frame = new FrameImage();
-                while((line = br.readLine()).equals(""));
-                frame.setName(line);
-
-                while((line = br.readLine()).equals(""));
-                String[] str = line.split(" ");
-                String path = str[1];
-
-                BufferedImage image = ImageIO.read(new File(path));
-                frame.setImage(image);
-                instance.frameImages.put(frame.getName(), frame);
-            }
+            BufferedImage image = loadImage(path); // Sử dụng loadImage từ bộ nhớ cache
+            frame.setImage(image);
+            frameImages.put(frame.getName(), frame);
         }
         br.close();
     }
 
+
     public FrameImage getFrameImage(String name) {
-        FrameImage frameImage = new FrameImage(instance.frameImages.get(name));
-        return frameImage;
+        if (frameImages == null || !frameImages.containsKey(name)) {
+            System.out.println("FrameImage '" + name + "' not found or frameImages not loaded.");
+            return null; // Trả về null nếu dữ liệu không tồn tại
+        }
+        //FrameImage frameImage = new FrameImage(instance.frameImages.get(name));
+        //return frameImage;
+        return frameImages.get(name);
     }
 
     public void LoadAnimation() throws IOException {
@@ -183,6 +195,10 @@ public class CacheDataLoader {
     }
 
     public Animation getAnimation(String name) {
+        if (animations == null || !animations.containsKey(name)) {
+            System.out.println("Animation '" + name + "' not found or animations not loaded.");
+            return null; // Trả về null nếu dữ liệu không tồn tại
+        }
         Animation animation = new Animation(instance.animations.get(name));
         return animation;
     }
